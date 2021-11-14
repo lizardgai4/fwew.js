@@ -11,14 +11,10 @@
 
 ## Installation
 
-Install fwew.js with yarn or npm
+Install fwew.js with yarn
 
 ```bash
   yarn add fwew.js
-```
-
-```bash
-  npm install fwew.js
 ```
 
 ## Running Tests
