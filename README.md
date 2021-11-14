@@ -11,8 +11,6 @@
 
 ## Installation
 
-### Node.js application
-
 Install fwew.js with yarn or npm
 
 ```bash
