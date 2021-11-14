@@ -13,10 +13,7 @@
 //  along with fwew.js.  If not, see http://gnu.org/licenses/
 /* spell-checker: disable */
 const expect = require('chai').expect;
-const {
-  affixes: { getLenitionTable, prefix, suffix, infix, lenite, reconstruct },
-  word: { Word }
-} = require('../lib')
+const { getLenitionTable, prefix, suffix, infix, lenite, reconstruct, Word } = require('../lib')
 
 describe('affixes module', () => {
   describe('#getLenitionTable()', () => {

@@ -13,10 +13,7 @@
 //  along with fwew.js.  If not, see http://gnu.org/licenses/
 /* spell-checker: disable */
 const expect = require('chai').expect;
-const {
-  list: { list },
-  word: { getWords }
-} = require('../lib')
+const { list, getWords } = require('../lib')
 const dictionary = getWords()
 
 describe('list module', () => {
