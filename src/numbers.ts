@@ -262,7 +262,7 @@ export function numberToNavi(input: number): string {
 
   // maximal 5 possible digits
   for (let i = 0; i < 5; i++) {
-    if (i == 0) {
+    if (i === 0) {
       // last digit is written differently
       let n = input % 0o10
       output = naviVocab[1][n] + output
@@ -273,17 +273,17 @@ export function numberToNavi(input: number): string {
       let n = input % 0o10
 
       // only run, when not 0, 0 is just kept out
-      if (n != 0) {
+      if (n !== 0) {
         let future = naviVocab[2][n] + naviVocab[3][i]
 
         // override to add `l` to vo, if at second digit and last digit is 0|1
-        if (i == 1 && n != 0 && (previousDigit == 0 || previousDigit == 1)) {
+        if (i === 1 && n !== 0 && (previousDigit === 0 || previousDigit === 1)) {
           future = future + "l"
         }
 
         // override to add `m` to za
         // only run if at third digit and second digit is not 0|1, also run when digits are x00|x01
-        if (i == 2 && n != 0 && ((previousDigit != 0 && previousDigit != 1) || (previousDigit == 0 && (firstDigit == 0 || firstDigit == 1)))) {
+        if (i === 2 && n !== 0 && ((previousDigit !== 0 && previousDigit !== 1) || (previousDigit === 0 && (firstDigit === 0 || firstDigit === 1)))) {
           future = future + "m"
         }
 

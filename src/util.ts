@@ -172,12 +172,10 @@ export function glob(pattern: string, subj: string): boolean {
 
     switch (i) {
       case 0:
-        // Check the first section. Requires special handling.
         if (!leadingGlob && idx !== 0) {
           return false
         }
       default:
-        // Check that the middle parts match.
         if (idx < 0) {
           return false
         }
@@ -194,9 +192,9 @@ export function glob(pattern: string, subj: string): boolean {
 /**
  * Combine two arrays together into a new array
  *
- * @param {T[]} arr1 - first array
- * @param {T[]} arr2 - second array
- * @returns {T[]} - a new array containing all items from first array, then all items from second array
+ * @param {Array} arr1 - first array
+ * @param {Array} arr2 - second array
+ * @returns {Array} - a new array containing all items from first array, then all items from second array
  */
 export function combineArrays<T>(arr1: T[], arr2: T[]): T[] | undefined {
   if (arr1 == null || arr1.length === 0) {

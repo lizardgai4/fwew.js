@@ -43,6 +43,14 @@ describe('fwew module', () => {
       expect(results[0].data.Affixes.Infix.length).to.equal(1)
       expect(results[0].data.Affixes.Infix[0]).to.equal('iv')
     })
+
+    it('should handle kivanom', () => {
+      // fwew kivanom
+      const results = translateFromNavi('kivanom')
+      expect(results.length).to.equal(1)
+      expect(results[0].data.Affixes.Infix.length).to.equal(1)
+      expect(results[0].data.Affixes.Infix[0]).to.equal('iv')
+    })
   })
 
   describe('#translateToNavi()', () => {

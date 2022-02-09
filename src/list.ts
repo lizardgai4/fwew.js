@@ -204,7 +204,7 @@ function listWords(args: string[], words: Word[]): Word[] {
             }
             break
           case "!=":
-            if (word.syllableCount() != ispec) {
+            if (word.syllableCount() !== ispec) {
               results.push(word)
             }
         }

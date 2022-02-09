@@ -66,8 +66,8 @@ export declare function glob(pattern: string, subj: string): boolean;
 /**
  * Combine two arrays together into a new array
  *
- * @param {T[]} arr1 - first array
- * @param {T[]} arr2 - second array
- * @returns {T[]} - a new array containing all items from first array, then all items from second array
+ * @param {Array} arr1 - first array
+ * @param {Array} arr2 - second array
+ * @returns {Array} - a new array containing all items from first array, then all items from second array
  */
 export declare function combineArrays<T>(arr1: T[], arr2: T[]): T[] | undefined;

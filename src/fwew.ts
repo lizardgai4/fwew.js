@@ -74,9 +74,10 @@ export function translateFromNavi(searchNaviWord: string): Word[] {
     }
 
     // check if applying affix rules to word will yield any matches against the user's search input, and add them if so
-    if (word.reconstruct(searchNaviWord)) {
-      word.data.Navi = naviWord
-      fwewResults.push(word)
+    const result = word.reconstruct(searchNaviWord);
+    if (result != null) {
+      result.data.Navi = naviWord
+      fwewResults.push(result)
     }
   }
 

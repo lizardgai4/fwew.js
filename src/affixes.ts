@@ -41,12 +41,11 @@ export function getLenitionTable(): LenitionTable {
  * try to add prefixes to the word. Return the attempt with placed prefixes
  * Has to be provided with a previousAttempt, the word to go from and add prefixes to.
  *
- * @param {Word} word- Fwew Word on which to track affixes
- * @param {string} target - string to try to match
- * @param {string} previousAttempt - previous attempt at matching target
- * @return {string} a new attempt at matching target, having added any applicable prefixes
+ * @param {Word} inputWord- Fwew Word on which to track affixes
+ * @return {Word} a new Word after attempt at matching target, having added any applicable prefixes
  */
-export function prefix(word: Word, target: string, previousAttempt: string): string {
+export function prefix(inputWord: Word): Word {
+  const word = inputWord.clone()
   let re: RegExp
   let reString: string = ''
   let attempt: string = ''
@@ -58,9 +57,9 @@ export function prefix(word: Word, target: string, previousAttempt: string): str
     const inf = word.data.Affixes.Infix
     if (inf.length > 0 && (inf[0] === 'us' || inf[0] === 'awn')) {
       reString = '(a|tì)?'
-    } else if (target.includes('ketsuk') || target.includes("tsuk")) {
+    } else if (word.target.includes('ketsuk') || word.target.includes("tsuk")) {
       reString = '(a)?(ketsuk|tsuk)?'
-    } else if (target.includes('siyu') && word.data.PartOfSpeech === 'vin.') {
+    } else if (word.target.includes('siyu') && word.data.PartOfSpeech === 'vin.') {
       reString = '^(pep|pem|pe|fray|tsay|fay|pay|fra|fì|tsa)?(ay|me|pxe|pe)?(fne)?(munsna)?'
     }
   } else {
@@ -74,48 +73,48 @@ export function prefix(word: Word, target: string, previousAttempt: string): str
         reString = '^(nìk|nì|a)?(ke|a)?'
         break
       default:
-        return previousAttempt // Not a type that has a prefix, return word without attempting.
+        return word // Not a type that has a prefix, return word without attempting.
     }
   }
 
-  if (target.startsWith('me') || target.startsWith('pxe') || target.startsWith('pe')) {
-    if (previousAttempt.startsWith('e')) {
+  if (word.target.startsWith('me') || word.target.startsWith('pxe') || word.target.startsWith('pe')) {
+    if (word.attempt.startsWith('e')) {
       reString = reString + '(e)?'
-      previousAttempt = previousAttempt.slice(1)
-    } else if (previousAttempt.startsWith("'e")) {
+      word.attempt = word.attempt.slice(1)
+    } else if (word.attempt.startsWith("'e")) {
       reString = reString + "('e)?"
-      previousAttempt = previousAttempt.slice(2)
+      word.attempt = word.attempt.slice(2)
     }
   }
 
   // soaiä replacement
-  if (word.data.Navi == 'soaia' && target.endsWith('soaiä')) {
-    previousAttempt = previousAttempt.replaceAll("soaia", "soai")
+  if (word.data.Navi === 'soaia' && word.target.endsWith('soaiä')) {
+    word.attempt = word.attempt.replaceAll("soaia", "soai")
   }
 
-  reString = reString + previousAttempt + '.*'
+  reString = reString + word.attempt + '.*'
 
   re = new RegExp(reString, 'g')
 
-  const tmp = Array.from(target.matchAll(re))
+  const tmp = Array.from(word.target.matchAll(re))
   if (tmp && tmp.length > 0 && tmp[0].length >= 1) {
     matchPrefixes = tmp[0].slice(1)
   }
   matchPrefixes = deleteEmpty(matchPrefixes)
 
   // no productive prefixes found; why bother to continue?
-  if (matchPrefixes.length == 0) {
-    return previousAttempt
+  if (matchPrefixes.length === 0) {
+    return word
   }
 
   // only allow lenition after lenition-causing prefixes when prefixes and lenition present
   if (word.data.Affixes.Lenition.length > 0 && matchPrefixes.length > 0) {
     if (containsArr(matchPrefixes, ['fne', 'munsna'])) {
-      return previousAttempt
+      return word
     }
     const lenPre = ['pep', 'pem', 'pe', 'fray', 'tsay', 'fay', 'pay', 'ay', 'me', 'pxe']
     if (containsArr(matchPrefixes, ['fì', 'tsa', 'fra']) && !containsArr(matchPrefixes, lenPre)) {
-      return previousAttempt
+      return word
     }
   }
 
@@ -124,7 +123,7 @@ export function prefix(word: Word, target: string, previousAttempt: string): str
     attempt += p
   }
 
-  previousAttempt = attempt + previousAttempt
+  word.attempt = attempt + word.attempt
 
   matchPrefixes = deleteElement(matchPrefixes, 'e')
   if (matchPrefixes.length > 0) {
@@ -134,19 +133,18 @@ export function prefix(word: Word, target: string, previousAttempt: string): str
     }
   }
 
-  return previousAttempt
+  return word
 }
 
 /**
  * try to add suffixes to the word. Return the attempt with placed suffixes
  * Has to be provided with a previousAttempt, the word to go from and add suffixes to.
  *
- * @param {Word} word- Fwew Word on which to track affixes
- * @param {string} target - string to try to match
- * @param {string} previousAttempt - previous attempt at matching target
- * @return {string} a new attempt at matching target, having added any applicable suffixes
+ * @param {Word} inputWord - Fwew Word on which to track affixes
+ * @return {Word} a new Word, after attempt at matching target, having added any applicable suffixes
  */
-export function suffix(word: Word, target: string, previousAttempt: string): string {
+export function suffix(inputWord: Word): Word {
+  const word = inputWord.clone()
   let re: RegExp
   let reString: string = ''
   let attempt: string = ''
@@ -157,40 +155,43 @@ export function suffix(word: Word, target: string, previousAttempt: string): str
   const ngey = 'ngey'
 
   // hardcoded hack for tseyä
-  if (target == 'tseyä' && word.data.Navi == 'tsaw') {
+  if (word.target === 'tseyä' && word.data.Navi === 'tsaw') {
     word.data.Affixes.Suffix = ['yä']
-    return 'tseyä'
+    word.attempt = 'tseyä'
+    return word
   }
 
   // hardcoded hack for oey
-  if (target == 'oey' && word.data.Navi == 'oe') {
+  if (word.target === 'oey' && word.data.Navi === 'oe') {
     word.data.Affixes.Suffix = ['y']
-    return 'oey'
+    word.attempt = 'oey'
+    return word
   }
 
   // hardcoded hack for ngey
-  if (target == ngey && word.data.Navi == 'nga') {
+  if (word.target === ngey && word.data.Navi === 'nga') {
     word.data.Affixes.Suffix = ['y']
-    return ngey
+    word.attempt = ngey
+    return word
   }
 
   // verbs
-  if (!word.data.PartOfSpeech.includes('adv.') && word.data.PartOfSpeech.includes('v') || word.data.PartOfSpeech == '') {
+  if (!word.data.PartOfSpeech.includes('adv.') && word.data.PartOfSpeech.includes('v') || word.data.PartOfSpeech === '') {
     const inf = word.data.Affixes.Infix
     const pre = word.data.Affixes.Prefix
     // word is verb with <us> or <awn>
-    if (inf.length == 1 && (inf[0] == 'us' || inf[0] == 'awn')) {
+    if (inf.length === 1 && (inf[0] === 'us' || inf[0] === 'awn')) {
       // it's a tì-<us> gerund; treat it like a noun
-      if (pre.length > 0 && pre.includes('tì') && inf[0] == 'us') {
+      if (pre.length > 0 && pre.includes('tì') && inf[0] === 'us') {
         reString = nSufRe
         // Just a regular <us> or <awn> verb
       } else {
         reString = adjSufRe
       }
       // It's a tsuk/ketsuk adj from a verb
-    } else if (inf.length == 0 && containsArr(pre, ['tsuk', 'ketsuk'])) {
+    } else if (inf.length === 0 && containsArr(pre, ['tsuk', 'ketsuk'])) {
       reString = adjSufRe
-    } else if (target.includes('tswo')) {
+    } else if (word.target.includes('tswo')) {
       reString = '(tswo)?' + nSufRe
     } else {
       reString = '(yu)?$'
@@ -215,21 +216,21 @@ export function suffix(word: Word, target: string, previousAttempt: string): str
         reString = '(ve)?(a)?'
         break
       default:
-        return previousAttempt // Not a type that has a suffix, return word without attempting.
+        return word // Not a type that has a suffix, return word without attempting.
     }
   }
 
   // soaiä support
-  if (word.data.Navi == 'soaia' && target.endsWith('soaiä')) {
-    previousAttempt = previousAttempt.replaceAll('soaia', 'soai')
-    reString = previousAttempt + reString
+  if (word.data.Navi === 'soaia' && word.target.endsWith('soaiä')) {
+    word.attempt = word.attempt.replaceAll('soaia', 'soai')
+    reString = word.attempt + reString
     // o -> e vowel shift support
-  } else if (previousAttempt.endsWith('o')) {
-    reString = previousAttempt.replaceAll('o', '[oe]') + reString
+  } else if (word.attempt.endsWith('o')) {
+    reString = word.attempt.replaceAll('o', '[oe]') + reString
     // a -> e vowel shift support
-  } else if (previousAttempt.endsWith('a')) {
-    reString = previousAttempt.replaceAll('a', '[ae]') + reString
-  } else if (word.data.Navi == 'tsaw') {
+  } else if (word.attempt.endsWith('a')) {
+    reString = word.attempt.replaceAll('a', '[ae]') + reString
+  } else if (word.data.Navi === 'tsaw') {
     const tsaSuf = [
       'mungwrr', 'kxamlä', 'tafkip', 'pxisre', 'pximaw', 'ftumfa', 'mìkam', 'nemfa', 'takip', 'lisre', 'talun',
       'krrka', 'teri', 'fkip', 'pxaw', 'pxel', 'luke', 'rofa', 'fpi', 'ftu', 'kip', 'vay', 'lok', 'maw', 'sìn', 'sre',
@@ -237,22 +238,22 @@ export function suffix(word: Word, target: string, previousAttempt: string): str
       'ro', 'wä', 'ìri', 'ri', 'ru', 'ti', 'r'
     ]
     for (let s of tsaSuf) {
-      if (target.endsWith('tsa' + s) || target.endsWith('sa' + s)) {
-        previousAttempt = previousAttempt.replace('aw', 'a')
-        reString = previousAttempt + reString
+      if (word.target.endsWith('tsa' + s) || word.target.endsWith('sa' + s)) {
+        word.attempt = word.attempt.replace('aw', 'a')
+        reString = word.attempt + reString
       }
     }
   } else {
-    reString = previousAttempt + reString
+    reString = word.attempt + reString
   }
 
   re = new RegExp(reString, 'g')
 
   let tmp: RegExpMatchArray[]
-  if (target.endsWith('siyu')) {
-    tmp = Array.from(target.replaceAll('siyu', ' siyu').matchAll(re))
+  if (word.target.endsWith('siyu')) {
+    tmp = Array.from(word.target.replaceAll('siyu', ' siyu').matchAll(re))
   } else {
-    tmp = Array.from(target.matchAll(re))
+    tmp = Array.from(word.target.matchAll(re))
   }
   if (tmp.length > 0 && tmp[0].length >= 1) {
     matchSuffixes = tmp[0].slice(1)
@@ -260,8 +261,8 @@ export function suffix(word: Word, target: string, previousAttempt: string): str
   matchSuffixes = deleteEmpty(matchSuffixes)
 
   // no productive prefixes found; why bother to continue?
-  if (matchSuffixes.length == 0) {
-    return previousAttempt
+  if (matchSuffixes.length === 0) {
+    return word
   }
 
   // build what prefixes to put on
@@ -270,17 +271,17 @@ export function suffix(word: Word, target: string, previousAttempt: string): str
   }
 
   // o -> e vowel shift support for pronouns with -yä
-  if (word.data.PartOfSpeech == 'pn.' && matchSuffixes.includes('yä')) {
-    if (previousAttempt.endsWith('o')) {
-      previousAttempt = previousAttempt.slice(0, -1) + 'e'
+  if (word.data.PartOfSpeech === 'pn.' && matchSuffixes.includes('yä')) {
+    if (word.attempt.endsWith('o')) {
+      word.attempt = word.attempt.slice(0, -1) + 'e'
       // a -> e vowel shift support
-    } else if (previousAttempt.endsWith('a')) {
-      previousAttempt = previousAttempt.slice(0, -1) + 'e'
+    } else if (word.attempt.endsWith('a')) {
+      word.attempt = word.attempt.slice(0, -1) + 'e'
     }
   }
-  previousAttempt = previousAttempt + attempt
-  if (previousAttempt.includes(' ') && previousAttempt.endsWith('siyu')) {
-    previousAttempt = previousAttempt.replaceAll(' siyu', 'siyu')
+  word.attempt = word.attempt + attempt
+  if (word.attempt.includes(' ') && word.attempt.endsWith('siyu')) {
+    word.attempt = word.attempt.replaceAll(' siyu', 'siyu')
   }
 
   const combined = combineArrays(word.data.Affixes.Suffix, matchSuffixes)
@@ -288,30 +289,25 @@ export function suffix(word: Word, target: string, previousAttempt: string): str
     word.data.Affixes.Suffix = combined
   }
 
-  return previousAttempt
+  return word
 }
 
 /**
  * try to add infixes to the word.
  *
- * @param {Word} word - the Fwew Word on which to track infixes
- * @param {string} target - string to try to match
- * @returns {string} the attempt with placed infixes
+ * @param {Word} inputWord - the Fwew Word on which to track infixes
+ * @returns {Word} a new Word after attempt at matching target, having added any applicable infixes
  */
-export function infix(word: Word, target: string): string {
-  // Have we already attempted infixes?
-  if (word.data.Affixes.Infix.length !== 0) {
-    return ""
-  }
-
-  // Does the word even have infix positions??
-  if (word.data.InfixLocations === "NULL") {
-    return ""
+export function infix(inputWord: Word): Word {
+  const word = inputWord.clone()
+  // Have we already attempted infixes or does the word even have infix positions??
+  if (word.data.Affixes.Infix.length !== 0 || word.data.InfixLocations === "NULL") {
+    return word
   }
 
   let re: RegExp
-  let reString: string = ''
-  let attempt: string = ''
+  let reString: string
+  let attempt: string
   let pos0InfixRe = "(äp)?(eyk)?"
   let pos1InfixRe = "(ìyev|iyev|ìlm|ìly|ìrm|ìry|ìsy|alm|aly|arm|ary|asy|ìm|imv|ilv|irv|ìy|am|ay|er|iv|ol|us|awn)?"
   let pos2InfixRe = "(eiy|ei|äng|eng|ats|uy)?"
@@ -321,7 +317,7 @@ export function infix(word: Word, target: string): string {
   let matchInfixes: string[] = []
 
   // Hardcode hack for z**enke
-  if (word.data.Navi == "zenke" && (target.includes("uy") || target.includes("ats"))) {
+  if (word.data.Navi === "zenke" && (word.target.includes("uy") || word.target.includes("ats"))) {
     word.data.InfixLocations = word.data.InfixLocations.replace(/ke$/, 'eke')
   }
 
@@ -338,7 +334,7 @@ export function infix(word: Word, target: string): string {
   reString = reString.replace("<2>", pos2InfixRe)
 
   re = new RegExp(reString, 'g')
-  const tmp = Array.from(target.matchAll(re))
+  const tmp = Array.from(word.target.matchAll(re))
   if (tmp.length > 0 && tmp[0].length >= 1) {
     matchInfixes = tmp[0].slice(1)
   }
@@ -374,100 +370,107 @@ export function infix(word: Word, target: string): string {
   }
 
   if (matchInfixes.length !== 0) {
-    const combined = combineArrays(word.data.Affixes.Infix, matchInfixes)
+    const combined = combineArrays<string>(word.data.Affixes.Infix, matchInfixes)
     if (combined != null) {
       word.data.Affixes.Infix = combined
     }
   }
 
-  return attempt
+  word.attempt = attempt
+  return word
 }
 
 /**
  * Lenite the word, based on the attempt. The target is not relevant here, so not given.
  * Returns the lenite attempt.
  * 
- * @param {Word} word - the Fwew Word on which to track lenition
- * @param {string} attempt - current attempt at reconstructing the user's word
- * @return {string} The lenited version of this word
+ * @param {Word} inputWord - the Fwew Word on which to track lenition
+ * @return {Word} The lenited version of this word
  */
-export function lenite(word: Word, attempt: string): string {
-  const { Navi, Affixes: { Lenition }, } = word.data
+export function lenite(inputWord: Word): Word {
+  const word = inputWord.clone()
   // Have we already attempted lenition?
-  if (Lenition.length !== 0) {
-    return attempt
+  if (word.data.Affixes.Lenition.length !== 0) {
+    return word
   }
 
   // replace the first phoneme of the word with the lenited version, if applicable
   for (const [k, v] of Object.entries(getLenitionTable())) {
-    if (Navi.toLowerCase().startsWith(k)) {
-      attempt = attempt.replace(k, v)
-      Lenition.push(`${k}→${v}`)
-      return attempt
+    if (word.data.Navi.toLowerCase().startsWith(k)) {
+      word.attempt = word.attempt.replace(k, v)
+      word.data.Affixes.Lenition.push(`${k}→${v}`)
+      return word
     }
   }
 
   // word did not start with a phoneme eligible for lenition, so return the input without modification
-  return attempt
+  return word
 }
 
 /**
- * Reconstruct is the main function of affixes.go, responsible for the affixing algorithm
+ * Reconstruct is the main function of affixes.ts, responsible for the affixing algorithm
  * This will try to reconstruct a Word, so it matches with the target.
- * Returns true if word got reconstructed into target!
+ *
+ * @param {Word} inputWord - word to use as base of reconstruction
+ * @param {string} target - goal form to produce from inputWord
+ * @returns Word if word got reconstructed into target, undefined if it did not
  */
-export function reconstruct(word: Word, target: string): boolean {
-  let attempt = word.data.Navi
+export function reconstruct(inputWord: Word, target: string): Word | undefined {
+  let word = inputWord.clone()
+  word.target = target
+  word.attempt = word.data.Navi
 
   // only try to infix verbs
   if (word.data.PartOfSpeech.startsWith("v") || word.data.PartOfSpeech.startsWith('svin.')) {
-    attempt = word.infix(target)
+    word = word.infix()
 
-    if (attempt == target) {
-      return true
+    if (word.attempt === word.target) {
+      return word
     }
   }
 
-  attempt = word.prefix(target, attempt)
+  word = prefix(word)
 
-  if (attempt == target) {
-    return true
+  if (word.attempt === word.target) {
+    return word
   }
 
-  attempt = word.suffix(target, attempt)
+  word = suffix(word)
 
-  if (attempt == target) {
-    return true
+  if (word.attempt === word.target) {
+    return word
   }
 
-  attempt = word.lenite(attempt)
+  word = lenite(word)
 
-  if (attempt == target) {
-    return true
+  if (word.attempt === word.target) {
+    return word
   }
 
   // try it another time, with different guess order!
 
   // clean up word
-  word.data.Affixes = { Prefix: [], Infix: [], Suffix: [], Lenition: [] }
+  let word2 = word.clone()
+  word2.target = target
+  word2.attempt = word2.data.Navi
+  word2.data.Affixes = { Prefix: [], Infix: [], Suffix: [], Lenition: [] }
 
-  attempt = word.lenite(word.data.Navi)
+  word2 = lenite(word2)
 
-  if (attempt == target) {
-    return true
+  if (word2.attempt === word2.target) {
+    return word2
   }
 
-  attempt = word.prefix(target, attempt)
+  word2 = prefix(word2)
 
-  if (attempt == target) {
-    return true
+  if (word2.attempt === word2.target) {
+    return word2
   }
 
-  attempt = word.suffix(target, attempt)
+  word2 = suffix(word2)
 
-  if (attempt == target) {
-    return true
+  if (word2.attempt === word2.target) {
+    return word2
   }
-
-  return false
+  return undefined;
 }

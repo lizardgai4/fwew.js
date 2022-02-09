@@ -52,7 +52,7 @@ export interface WordData {
  */
 export function getWords(): Word[] {
   if (dictionary.length === 0) {
-    dictionary = words.map((w: WordData) => new Word(w))
+    dictionary = words.map((w: WordData) => new Word(w).clone())
   }
   return dictionary
 }
@@ -61,10 +61,12 @@ export function getWords(): Word[] {
  * Represents a Word in the Fwew Dictionary
  */
 export class Word {
+  attempt: string = ''
+  target: string = ''
   data: WordData
 
   constructor(
-    data: WordData
+    data?: WordData
   ) {
     this.data = data || {
       ID: '',
@@ -90,6 +92,18 @@ export class Word {
   }
 
   /**
+   * Clone a Fwew Word with deep copy
+   *
+   * @return deep copy clone of this Word
+   */
+  clone(): Word {
+    const clone = new Word(JSON.parse(JSON.stringify(this.data)))
+    clone.attempt = this.attempt
+    clone.target = this.target
+    return clone;
+  }
+
+  /**
    * Get the number of syllables of a Na'vi word
    *
    * @returns the syllable count of this word
@@ -110,7 +124,7 @@ export class Word {
     const word = compress(this.data.Navi.toLowerCase())
 
     for (let p of vowels) {
-      numSyllables += word.split('').filter(x => x == p).length
+      numSyllables += word.split('').filter(x => x === p).length
     }
 
     return numSyllables
@@ -119,7 +133,6 @@ export class Word {
   /**
    * Calculate similarity score between user's word and current Na'vi word
    * 
-   * @param {Word} word - Fwew Word with which to calculate similarity
    * @param {string} other - other Na'vi word to compare to this Na'vi word
    * @return {number} the similarity score, in range [0, 1.0] (representing from 0% up to 100% similarity)
    */
@@ -192,55 +205,46 @@ export class Word {
      * In the average case, intersectionRatio and lengthRatio tend to be in range (0, 1),
      * hence the normalizing division by a constant of 2.
      */
-    const similarity = (intersectionRatio + lengthRatio) / 2
-
-    return similarity
+    return (intersectionRatio + lengthRatio) / 2
   }
 
   /**
    * try to add prefixes to the word. Return the attempt with placed prefixes
    * Has to be provided with a previousAttempt, the word to go from and add prefixes to.
    *
-   * @param {string} target - string to try to match
-   * @param {string} previousAttempt - previous attempt at matching target
-   * @return {string} a new attempt at matching target, having added any applicable prefixes
+   * @return {Word} a new Word after attempt at matching target, having added any applicable prefixes
    */
-  prefix(target: string, attempt: string): string {
-    return affixes.prefix(this, target, attempt)
+  prefix(): Word {
+    return affixes.prefix(this)
   }
 
   /**
    * try to add suffixes to the word. Return the attempt with placed suffixes
    * Has to be provided with a previousAttempt, the word to go from and add suffixes to.
    *
-   * @param {Word} word - Fwew Word on which to track affixes
-   * @param {string} target - string to try to match
-   * @param {string} previousAttempt - previous attempt at matching target
-   * @return {string} a new attempt at matching target, having added any applicable suffixes
+   * @return {Word} a new Word after attempt at matching target, having added any applicable suffixes
    */
-  suffix(target: string, previousAttempt: string): string {
-    return affixes.suffix(this, target, previousAttempt)
+  suffix(): Word {
+    return affixes.suffix(this)
   }
 
   /**
    * try to add infixes to the word.
    *
-   * @param {string} target - string to try to match
-   * @returns {string} the attempt with placed infixes
+   * @returns {Word} a new Word after attempt at matching target, having added any applicable infixes
    */
-  infix(target: string): string {
-    return affixes.infix(this, target)
+  infix(): Word {
+    return affixes.infix(this)
   }
 
   /**
    * Lenite the word, based on the attempt. The target is not relevant here, so not given.
    * Returns the lenite attempt.
    * 
-   * @param {string} attempt - current attempt at reconstructing the user's word
-   * @return {string} The lenited version of this word
+   * @return {Word} The lenited version of this word
    */
-  lenite(attempt: string): string {
-    return affixes.lenite(this, attempt)
+  lenite(): Word {
+    return affixes.lenite(this)
   }
 
   /**
@@ -248,7 +252,7 @@ export class Word {
    * This will try to reconstruct a Word, so it matches with the target.
    * Returns true if word got reconstructed into target!
    */
-  reconstruct(target: string): boolean {
+  reconstruct(target: string): Word | undefined {
     return affixes.reconstruct(this, target)
   }
 }
