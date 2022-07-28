@@ -38,9 +38,9 @@ describe('list module', () => {
     })
     // list pos is v.
     it('should list all word whose part of speech is exactly the given string', () => {
-      const results = list(['pos', 'is', 'v.'])
+      const results = list(['pos', 'is', 'intj.'])
       expect(results.length).to.be.greaterThan(0)
-      results.forEach(w => expect(w.data.PartOfSpeech === 'v.').to.be.true)
+      results.forEach(w => expect(w.data.PartOfSpeech === 'intj.').to.be.true)
     })
     // list pos like v%.
     it('should list all word whose part of speech is like the given string', () => {
@@ -96,7 +96,6 @@ describe('list module', () => {
     it('should list all words that include given string', () => {
       const results = list(['word', 'has', 'ts'])
       expect(results.length).to.be.greaterThan(0)
-      expect(results.length).to.equal(312)
       results.forEach(w => expect(w.data.Navi.toLowerCase().includes('ts')).to.be.true)
     })
     // list word like f%w

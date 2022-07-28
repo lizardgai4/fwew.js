@@ -42,6 +42,7 @@ export interface WordData {
   PL: string
   RU: string
   SV: string
+  TR: string
   Affixes: Affix
 }
 
@@ -87,6 +88,7 @@ export class Word {
       PL: '',
       RU: '',
       SV: '',
+      TR: '',
       Affixes: { Prefix: [], Infix: [], Suffix: [], Lenition: [] }
     }
   }

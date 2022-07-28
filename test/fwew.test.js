@@ -83,6 +83,7 @@ describe('fwew module', () => {
       { languageCode: 'pl', localized: 'jeden', numResults: 2 },
       { languageCode: 'ru', localized: 'один', numResults: 2 },
       { languageCode: 'sv', localized: 'hammarhuvud', numResults: 1},
+      { languageCode: 'tr', localized: 'ingilizce', numResults: 1 },
     ]
 
     params.forEach(parameterizedText)

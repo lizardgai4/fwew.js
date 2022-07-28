@@ -133,6 +133,9 @@ export function translateToNavi(searchWord: string, langCode: string): Word[] {
         break
       case 'sv':
         wordString += word.data.SV
+        break
+      case 'tr':
+        wordString += word.data.TR
     }
     wordString = stripChars(wordString, '.,;()')
     wordString = wordString.toLowerCase()

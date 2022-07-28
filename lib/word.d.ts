@@ -23,6 +23,7 @@ export interface WordData {
     PL: string;
     RU: string;
     SV: string;
+    TR: string;
     Affixes: Affix;
 }
 /**
