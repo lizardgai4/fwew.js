@@ -89,7 +89,7 @@ export function prefix(inputWord: Word): Word {
 
   // soaiä replacement
   if (word.data.Navi === 'soaia' && word.target.endsWith('soaiä')) {
-    word.attempt = word.attempt.replaceAll("soaia", "soai")
+    word.attempt = word.attempt.replace(/soaia/g, 'soai')
   }
 
   reString = reString + word.attempt + '.*'
@@ -222,14 +222,14 @@ export function suffix(inputWord: Word): Word {
 
   // soaiä support
   if (word.data.Navi === 'soaia' && word.target.endsWith('soaiä')) {
-    word.attempt = word.attempt.replaceAll('soaia', 'soai')
+    word.attempt = word.attempt.replace(/soaia/g, 'soai')
     reString = word.attempt + reString
     // o -> e vowel shift support
   } else if (word.attempt.endsWith('o')) {
-    reString = word.attempt.replaceAll('o', '[oe]') + reString
+    reString = word.attempt.replace(/o/g, '[oe]') + reString
     // a -> e vowel shift support
   } else if (word.attempt.endsWith('a')) {
-    reString = word.attempt.replaceAll('a', '[ae]') + reString
+    reString = word.attempt.replace(/a/g, '[ae]') + reString
   } else if (word.data.Navi === 'tsaw') {
     const tsaSuf = [
       'mungwrr', 'kxamlä', 'tafkip', 'pxisre', 'pximaw', 'ftumfa', 'mìkam', 'nemfa', 'takip', 'lisre', 'talun',
@@ -251,7 +251,7 @@ export function suffix(inputWord: Word): Word {
 
   let tmp: RegExpMatchArray[]
   if (word.target.endsWith('siyu')) {
-    tmp = Array.from(word.target.replaceAll('siyu', ' siyu').matchAll(re))
+    tmp = Array.from(word.target.replace(/siyu/g, ' siyu').matchAll(re))
   } else {
     tmp = Array.from(word.target.matchAll(re))
   }
@@ -281,7 +281,7 @@ export function suffix(inputWord: Word): Word {
   }
   word.attempt = word.attempt + attempt
   if (word.attempt.includes(' ') && word.attempt.endsWith('siyu')) {
-    word.attempt = word.attempt.replaceAll(' siyu', 'siyu')
+    word.attempt = word.attempt.replace(/ siyu/g, 'siyu')
   }
 
   const combined = combineArrays(word.data.Affixes.Suffix, matchSuffixes)

@@ -293,7 +293,7 @@ export function numberToNavi(input: number): string {
     }
   }
 
-  output = output.replaceAll("mm", "m")
+  output = output.replace(/mm/g, "m")
 
   return output
 }

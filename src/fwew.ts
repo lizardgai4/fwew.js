@@ -29,12 +29,11 @@ export function translateFromNavi(searchNaviWord: string): Word[] {
 
   // remove all the sketchy chars from arguments
   for (const c of '~@#$%^&*()[]{}<>_/.,;:!?|+\\') {
-    searchNaviWord = searchNaviWord.replaceAll(c, '')
+    searchNaviWord = searchNaviWord.replace(`/${c}/g`, '')
   }
 
   // normalize tìftang character
-  searchNaviWord = searchNaviWord.replaceAll("’", "'")
-  searchNaviWord = searchNaviWord.replaceAll("‘", "'")
+  searchNaviWord = searchNaviWord.replace(/[’‘]/g, '')
 
   // find everything lowercase
   searchNaviWord = searchNaviWord.toLowerCase()
@@ -56,8 +55,7 @@ export function translateFromNavi(searchNaviWord: string): Word[] {
     const naviWord = word.data.Navi
 
     // remove "+" and "--", we want to be able to search with and without those!
-    word.data.Navi = word.data.Navi.replaceAll("+", "")
-    word.data.Navi = word.data.Navi.replaceAll("--", "")
+    word.data.Navi = word.data.Navi.replace(/[+-]/g, '')
     word.data.Navi = word.data.Navi.toLowerCase()
 
     // exact match, add this to the results array and go no further in the dictionary
