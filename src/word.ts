@@ -66,9 +66,7 @@ export class Word {
   target: string = ''
   data: WordData
 
-  constructor(
-    data?: WordData
-  ) {
+  constructor(data?: WordData) {
     this.data = data || {
       ID: '',
       Navi: '',
@@ -102,7 +100,7 @@ export class Word {
     const clone = new Word(JSON.parse(JSON.stringify(this.data)))
     clone.attempt = this.attempt
     clone.target = this.target
-    return clone;
+    return clone
   }
 
   /**
@@ -114,7 +112,19 @@ export class Word {
     // function to compress digraphs
     const compress = (word: string): string => {
       // compression map
-      const cMap: { [key: string]: string } = { aw: '0', ay: '1', ew: '2', ey: '3', kx: '4', ll: '5', ng: '6', px: '7', rr: '8', ts: '9', tx: 'Q' }
+      const cMap: { [key: string]: string } = {
+        aw: '0',
+        ay: '1',
+        ew: '2',
+        ey: '3',
+        kx: '4',
+        ll: '5',
+        ng: '6',
+        px: '7',
+        rr: '8',
+        ts: '9',
+        tx: 'Q'
+      }
       for (const c in cMap) {
         word = word.replace(c, cMap[c])
       }
@@ -122,11 +132,26 @@ export class Word {
     }
 
     let numSyllables = 0
-    const vowels = ["a", "ä", "e", "é", "i", "ì", "o", "u", "aw", "ay", "ew", "ey", "ll", "rr"].map(v => compress(v))
+    const vowels = [
+      'a',
+      'ä',
+      'e',
+      'é',
+      'i',
+      'ì',
+      'o',
+      'u',
+      'aw',
+      'ay',
+      'ew',
+      'ey',
+      'll',
+      'rr'
+    ].map((v) => compress(v))
     const word = compress(this.data.Navi.toLowerCase())
 
     for (let p of vowels) {
-      numSyllables += word.split('').filter(x => x === p).length
+      numSyllables += word.split('').filter((x) => x === p).length
     }
 
     return numSyllables
@@ -134,7 +159,7 @@ export class Word {
 
   /**
    * Calculate similarity score between user's word and current Na'vi word
-   * 
+   *
    * @param {string} other - other Na'vi word to compare to this Na'vi word
    * @return {number} the similarity score, in range [0, 1.0] (representing from 0% up to 100% similarity)
    */
@@ -167,7 +192,12 @@ export class Word {
     const thisWordVowelsOther = intersection(thisWordVowels, other)
 
     // empty intersection yields 0 similarity score
-    if (thisWordVowels == null || otherWordVowels == null || wordIntersection == null || thisWordVowelsOther == null) {
+    if (
+      thisWordVowels == null ||
+      otherWordVowels == null ||
+      wordIntersection == null ||
+      thisWordVowelsOther == null
+    ) {
       return 0.0
     }
 
@@ -242,7 +272,7 @@ export class Word {
   /**
    * Lenite the word, based on the attempt. The target is not relevant here, so not given.
    * Returns the lenite attempt.
-   * 
+   *
    * @return {Word} The lenited version of this word
    */
   lenite(): Word {

@@ -12,15 +12,17 @@
 //  You should have received a copy of the GNU General Public License
 //  along with fwew.js.  If not, see http://gnu.org/licenses/
 /* spell-checker: disable */
-const expect = require('chai').expect;
-const { numbers: { naviToNumber, numberToNavi } } = require('../lib')
+const expect = require('chai').expect
+const {
+  numbers: { naviToNumber, numberToNavi }
+} = require('../lib')
 
 describe('numbers module', () => {
   describe('#naviToNumber()', () => {
     it('should convert number string to number', () => {
       expect(naviToNumber('volaw')).to.equal(0o11)
     })
-  
+
     it('should convert kew to 0', () => {
       expect(naviToNumber('kew')).to.equal(0)
     })

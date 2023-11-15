@@ -11,7 +11,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with fwew.js.  If not, see http://gnu.org/licenses/
-const expect = require('chai').expect;
+const expect = require('chai').expect
 const {
   fwew: { translateFromNavi, translateToNavi }
 } = require('../lib')
@@ -68,7 +68,11 @@ describe('fwew module', () => {
         for (const result of results) {
           expect(result).to.exist
           expect(result.data).to.exist
-          expect(result.data[param.languageCode.toUpperCase()].includes(param.localized)).to.be.true
+          expect(
+            result.data[param.languageCode.toUpperCase()].includes(
+              param.localized
+            )
+          ).to.be.true
         }
       })
     }
@@ -82,8 +86,8 @@ describe('fwew module', () => {
       { languageCode: 'nl', localized: 'één', numResults: 3 },
       { languageCode: 'pl', localized: 'jeden', numResults: 2 },
       { languageCode: 'ru', localized: 'один', numResults: 2 },
-      { languageCode: 'sv', localized: 'hammarhuvud', numResults: 1},
-      { languageCode: 'tr', localized: 'ingilizce', numResults: 1 },
+      { languageCode: 'sv', localized: 'hammarhuvud', numResults: 1 },
+      { languageCode: 'tr', localized: 'ingilizce', numResults: 1 }
     ]
 
     params.forEach(parameterizedText)

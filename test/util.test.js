@@ -12,7 +12,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with fwew.js.  If not, see http://gnu.org/licenses/
 
-const expect = require('chai').expect;
+const expect = require('chai').expect
 const {
   util: {
     containsArr,
@@ -54,7 +54,7 @@ describe('util module', () => {
     it('should delete all given string in array', () => {
       const arr = ['b', 'a', 'b', 'c', 'b']
       const result = deleteElement(arr, 'b')
-      result.forEach(r => expect(r === 'b').to.be.false)
+      result.forEach((r) => expect(r === 'b').to.be.false)
     })
   })
 
@@ -69,7 +69,7 @@ describe('util module', () => {
     })
     it('should remove all empty items from array', () => {
       const result = deleteEmpty(['a', 'b', '', undefined, null, '', 'd'])
-      result.forEach(r => {
+      result.forEach((r) => {
         expect(r).not.to.equal('')
         expect(r).not.to.equal(null)
         expect(r).not.to.equal(undefined)
@@ -246,7 +246,7 @@ describe('util module', () => {
     it('should return undefined when 1st array is null and 2nd array is undefined', () => {
       expect(combineArrays(null, undefined)).to.be.undefined
     })
-    
+
     it('should return undefined when 1nd array is undefined and 2nd array is null', () => {
       expect(combineArrays(undefined, null)).to.be.undefined
     })

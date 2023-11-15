@@ -46,7 +46,7 @@ export function containsArr(arr1: string[], arr2: string[]): boolean {
  * @returns {string[]} new array containing original items minus all str
  */
 export function deleteElement(arr: string[], str: string): string[] {
-  return arr.filter(s => s !== str)
+  return arr.filter((s) => s !== str)
 }
 
 /**
@@ -57,7 +57,7 @@ export function deleteElement(arr: string[], str: string): string[] {
  */
 export function deleteEmpty(arr: string[] | null): string[] {
   if (arr == null) return []
-  return arr.filter(s => s !== '' && s != null)
+  return arr.filter((s) => s !== '' && s != null)
 }
 
 /**
@@ -68,7 +68,7 @@ export function deleteEmpty(arr: string[] | null): string[] {
  */
 export function isLetter(str: string): boolean {
   if (str == null) return false
-  return ['\'', '‘'].includes(str) || str.toLowerCase() !== str.toUpperCase()
+  return ["'", '‘'].includes(str) || str.toLowerCase() !== str.toUpperCase()
 }
 
 /**
@@ -114,7 +114,10 @@ export function stripChars(str: string, chr: string): string {
  * @param {string} b - second string
  * @return {string} the sequence of characters that both strings have in common, from left to right
  */
-export function intersection(a: string | undefined, b: string | undefined): string | undefined {
+export function intersection(
+  a: string | undefined,
+  b: string | undefined
+): string | undefined {
   if (a == null || b == null) return undefined
 
   // initialize the map with all the characters in a

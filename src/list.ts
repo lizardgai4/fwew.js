@@ -57,176 +57,176 @@ function listWords(args: string[], words: Word[]): Word[] {
   for (const [i, word] of Object.entries(words)) {
     let ispec: number
     switch (what) {
-      case text("w_pos"):
+      case text('w_pos'):
         const pos = word.data.PartOfSpeech.toLowerCase()
         switch (cond) {
-          case text("c_starts"):
+          case text('c_starts'):
             if (pos.startsWith(spec)) {
               results.push(word)
             }
             break
-          case text("c_ends"):
+          case text('c_ends'):
             if (pos.endsWith(spec)) {
               results.push(word)
             }
             break
-          case text("c_is"):
+          case text('c_is'):
             if (pos === spec) {
               results.push(word)
             }
             break
-          case text("c_has"):
+          case text('c_has'):
             if (pos.includes(spec)) {
               results.push(word)
             }
             break
-          case text("c_like"):
+          case text('c_like'):
             if (glob(spec, pos)) {
               results.push(word)
             }
             break
-          case text("c_not-starts"):
+          case text('c_not-starts'):
             if (!pos.startsWith(spec)) {
               results.push(word)
             }
             break
-          case text("c_not-ends"):
+          case text('c_not-ends'):
             if (!pos.endsWith(spec)) {
               results.push(word)
             }
             break
-          case text("c_not-is"):
+          case text('c_not-is'):
             if (pos !== spec) {
               results.push(word)
             }
             break
-          case text("c_not-has"):
+          case text('c_not-has'):
             if (!pos.includes(spec)) {
               results.push(word)
             }
             break
-          case text("c_not-like"):
+          case text('c_not-like'):
             if (!glob(spec, pos)) {
               results.push(word)
             }
         }
         break
-      case text("w_word"):
+      case text('w_word'):
         const navi = word.data.Navi.toLowerCase()
         switch (cond) {
-          case text("c_starts"):
+          case text('c_starts'):
             if (navi.startsWith(spec)) {
               results.push(word)
             }
             break
-          case text("c_ends"):
+          case text('c_ends'):
             if (navi.endsWith(spec)) {
               results.push(word)
             }
             break
-          case text("c_has"):
+          case text('c_has'):
             if (navi.includes(spec)) {
               results.push(word)
             }
             break
-          case text("c_like"):
+          case text('c_like'):
             if (glob(spec, navi)) {
               results.push(word)
             }
             break
-          case text("c_not-starts"):
+          case text('c_not-starts'):
             if (!navi.startsWith(spec)) {
               results.push(word)
             }
             break
-          case text("c_not-ends"):
+          case text('c_not-ends'):
             if (!navi.endsWith(spec)) {
               results.push(word)
             }
             break
-          case text("c_not-has"):
+          case text('c_not-has'):
             if (!navi.includes(spec)) {
               results.push(word)
             }
             break
-          case text("c_not-like"):
+          case text('c_not-like'):
             if (!glob(spec, navi)) {
               results.push(word)
             }
         }
         break
-      case text("w_words"):
+      case text('w_words'):
         const specNumber = +spec
         if (isNaN(specNumber)) {
           return words
         }
         switch (cond) {
-          case text("c_first"):
+          case text('c_first'):
             if (Number(i) < specNumber) {
               results.push(word)
             }
             break
-          case text("c_last"):
+          case text('c_last'):
             if (Number(i) >= wordsLen - specNumber && Number(i) <= wordsLen) {
               results.push(word)
             }
         }
         break
-      case text("w_syllables"):
+      case text('w_syllables'):
         ispec = +spec
         if (isNaN(ispec)) {
           return words
         }
         switch (cond) {
-          case "<":
+          case '<':
             if (word.syllableCount() < ispec) {
               results.push(word)
             }
             break
-          case "<=":
+          case '<=':
             if (word.syllableCount() <= ispec) {
               results.push(word)
             }
             break
-          case "=":
+          case '=':
             if (word.syllableCount() === ispec) {
               results.push(word)
             }
             break
-          case ">=":
+          case '>=':
             if (word.syllableCount() >= ispec) {
               results.push(word)
             }
             break
-          case ">":
+          case '>':
             if (word.syllableCount() > ispec) {
               results.push(word)
             }
             break
-          case "!=":
+          case '!=':
             if (word.syllableCount() !== ispec) {
               results.push(word)
             }
         }
         break
-      case text("w_stress"):
+      case text('w_stress'):
         ispec = +spec
         if (isNaN(ispec)) {
           return words
         }
         const istress = +word.data.Stressed
         switch (cond) {
-          case "<":
+          case '<':
             if (istress < ispec) {
               results.push(word)
             }
             break
-          case "<=":
+          case '<=':
             if (istress <= ispec) {
               results.push(word)
             }
             break
-          case "=":
+          case '=':
             if (ispec < 0) {
               if (word.syllableCount() + ispec + 1 === istress) {
                 results.push(word)
@@ -235,17 +235,17 @@ function listWords(args: string[], words: Word[]): Word[] {
               results.push(word)
             }
             break
-          case ">=":
+          case '>=':
             if (istress >= ispec) {
               results.push(word)
             }
             break
-          case ">":
+          case '>':
             if (istress > ispec) {
               results.push(word)
             }
             break
-          case "!=":
+          case '!=':
             if (ispec < 0) {
               if (word.syllableCount() + ispec + 1 !== istress) {
                 results.push(word)

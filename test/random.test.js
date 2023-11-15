@@ -12,7 +12,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with fwew.js.  If not, see http://gnu.org/licenses/
 /* spell-checker: disable */
-const expect = require('chai').expect;
+const expect = require('chai').expect
 const { random, getWords } = require('../lib')
 const dictionary = getWords()
 
@@ -22,21 +22,21 @@ describe('random module', () => {
       const results = random(8, [])
       expect(results).to.exist
       expect(results.length).to.equal(8)
-      results.forEach(w => expect(w).to.exist)
+      results.forEach((w) => expect(w).to.exist)
     })
 
     it('should get random number of random words', () => {
       const results = random(-1, [])
       expect(results).to.exist
       expect(results.length).to.be.greaterThan(0)
-      results.forEach(w => expect(w).to.exist)
+      results.forEach((w) => expect(w).to.exist)
     })
 
     it('should get 10 random transitive verbs', () => {
       const results = random(10, ['pos', 'is', 'vtr.'])
       expect(results).to.exist
       expect(results.length).to.equal(10)
-      results.forEach(w => expect(w.data.PartOfSpeech).to.equal('vtr.'))
+      results.forEach((w) => expect(w.data.PartOfSpeech).to.equal('vtr.'))
     })
 
     it('should return empty array when no words satify condition', () => {

@@ -20,7 +20,7 @@ import { stripChars } from './util'
  * !! Only one word is allowed, if spaces are found, they will be treated like part of the word !!
  * This will return an array of Words, that fit the input text
  * One Navi-Word can have multiple meanings and words (e.g. synonyms)
- * 
+ *
  * @param {string} searchNaviWord word to search
  * @return {Word[]} array of matching Fwew Word
  */
@@ -47,7 +47,7 @@ export function translateFromNavi(searchNaviWord: string): Word[] {
    * fwew function: searches for Na'vi words in the dictionary
    *
    * Will run on each entry of the dictionary, appending matching Word entries to the previously-defined results array
-   * 
+   *
    * @param {Word} word in the dictionary we are currently comparing to the user's search input
    */
   const fwew = (word: Word): void => {
@@ -67,12 +67,12 @@ export function translateFromNavi(searchNaviWord: string): Word[] {
 
     // skip words that obviously won't work
     const similarityScore = word.similarity(searchNaviWord)
-    if (similarityScore < 0.50 && !searchNaviWord.endsWith("eyä")) {
+    if (similarityScore < 0.5 && !searchNaviWord.endsWith('eyä')) {
       return
     }
 
     // check if applying affix rules to word will yield any matches against the user's search input, and add them if so
-    const result = word.reconstruct(searchNaviWord);
+    const result = word.reconstruct(searchNaviWord)
     if (result != null) {
       result.data.Navi = naviWord
       fwewResults.push(result)
@@ -99,7 +99,7 @@ export function translateToNavi(searchWord: string, langCode: string): Word[] {
    * fwewReverse function: searches for Na'vi words in the dictionary in the reverse direction
    *
    * Will run on each entry of the dictionary, appending matching Word entries to the previously-defined results array
-   * 
+   *
    * @param {Word} word in the dictionary we are currently comparing to the user's search input
    */
   const fwewReverse = (word: Word): void => {

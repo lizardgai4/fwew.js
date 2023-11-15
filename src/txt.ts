@@ -19,24 +19,24 @@ export interface TextMap {
 
 let texts: TextMap = {
   // <what> strings
-  "w_pos": "pos",
-  "w_word": "word",
-  "w_words": "words",
-  "w_syllables": "syllables",
-  "w_stress": "stress",
+  w_pos: 'pos',
+  w_word: 'word',
+  w_words: 'words',
+  w_syllables: 'syllables',
+  w_stress: 'stress',
   // <cond> strings
-  "c_is": "is",
-  "c_has": "has",
-  "c_like": "like",
-  "c_starts": "starts",
-  "c_ends": "ends",
-  "c_not-is": "not-is",
-  "c_not-has": "not-has",
-  "c_not-like": "not-like",
-  "c_not-starts": "not-starts",
-  "c_not-ends": "not-ends",
-  "c_first": "first",
-  "c_last": "last"
+  c_is: 'is',
+  c_has: 'has',
+  c_like: 'like',
+  c_starts: 'starts',
+  c_ends: 'ends',
+  'c_not-is': 'not-is',
+  'c_not-has': 'not-has',
+  'c_not-like': 'not-like',
+  'c_not-starts': 'not-starts',
+  'c_not-ends': 'not-ends',
+  c_first: 'first',
+  c_last: 'last'
 }
 
 // Text function is the accessor for texts string[]
