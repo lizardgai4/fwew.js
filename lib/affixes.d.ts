@@ -3,10 +3,10 @@ export interface LenitionTable {
     [key: string]: string;
 }
 /**
-* get table of all the possible lenition changes
-*
-* @return {LenitionTable} table of all possible lenition changes
-*/
+ * get table of all the possible lenition changes
+ *
+ * @return {LenitionTable} table of all possible lenition changes
+ */
 export declare function getLenitionTable(): LenitionTable;
 /**
  * try to add prefixes to the word. Return the attempt with placed prefixes
