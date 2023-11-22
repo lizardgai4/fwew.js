@@ -79,16 +79,16 @@ console.log(results)
 ### Translate Na'vi numbers
 
 ```typescript
-import { numbers } from "fwew.js"
+import { numbers } from 'fwew.js'
 
-const result = numbers.naviToNumber("mevopey")
+const result = numbers.naviToNumber('mevopey')
 console.log(result)
 ```
 
 ### Convert numbers to Na'vi
 
 ```typescript
-import { numbers } from "fwew.js"
+import { numbers } from 'fwew.js'
 
 const result = numbers.numberToNavi(42)
 console.log(result)

@@ -1,8 +1,7 @@
-import * as fwew from './fwew';
-import { Affix, WordData, Word, getWords } from './word';
+import { fwew, fwew1D, fwew1DReverse, fwewReverse, fwewSimple, search } from './fwew';
 import { list } from './list';
+import { nameAlu, nameFull, nameSingle } from './names';
+import { naviToNumber, numberToNavi } from './numbers';
 import { random } from './random';
-import * as numbers from './numbers';
-import { getLenitionTable, prefix, suffix, infix, lenite, reconstruct } from './affixes';
-import * as util from './util';
-export { fwew, Affix, WordData, Word, getWords, list, random, numbers, getLenitionTable, prefix, suffix, infix, lenite, reconstruct, util };
+import { lenition, version } from './util';
+export { fwew, fwew1D, fwew1DReverse, fwewReverse, fwewSimple, lenition, list, nameAlu, nameFull, nameSingle, naviToNumber, numberToNavi, random, search, version };
