@@ -4,17 +4,17 @@ export default [
   {
     input: './src/index.ts',
     output: {
-      file: './lib/index.esm.js',
-      format: 'esm',
+      file: './dist/index.esm.js',
+      format: 'esm'
     },
-    plugins: [typescript()],
+    plugins: [typescript()]
   },
   {
     input: './src/index.ts',
     output: {
-      file: './lib/index.js',
-      format: 'cjs',
+      file: './dist/index.js',
+      format: 'cjs'
     },
-    plugins: [typescript()],
-  },
+    plugins: [typescript()]
+  }
 ]

@@ -24,7 +24,7 @@
     /* Transpiling with TypeScript */
     "moduleResolution": "Bundler",
     "module": "ESNext",
-    "outDir": "lib",
+    "outDir": "dist",
     "sourceMap": true,
 
     /* Building for a Library */
@@ -34,5 +34,5 @@
     "lib": ["es2022", "dom", "dom.iterable"]
   },
   "include": ["src"],
-  "exclude": ["node_modules", "lib", "**/*.test.ts"]
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }
