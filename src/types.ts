@@ -36,8 +36,24 @@ export type FwewNumber = {
 }
 
 export type FwewError = {
-  message: 'string'
+  message: string
 }
+
+export type Dialect = 'forest' | 'reef'
+
+export type NounMode = 'normal noun' | 'verb-er'
+
+export type AdjectiveMode =
+  | 'none'
+  | 'any'
+  | 'normal adjective'
+  | 'genitive noun'
+  | 'origin noun'
+  | 'participle verb'
+  | 'active participle verb'
+  | 'passive participle verb'
+
+export type NameEnding = "'ite" | "'itan"
 
 export type LanguageCode =
   | 'DE'
@@ -50,3 +66,20 @@ export type LanguageCode =
   | 'RU'
   | 'SV'
   | 'TR'
+
+export type LenitionTable = {
+  kx: string
+  px: string
+  tx: string
+  k: string
+  p: string
+  t: string
+  ts: string
+  "'": string
+}
+
+export type Version = {
+  APIVersion: string
+  FwewVersion: string
+  DictVersion: string
+}

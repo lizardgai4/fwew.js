@@ -3,9 +3,9 @@ import type { LanguageCode, Word } from './types'
 
 /**
  * Search 1 or more words in both directions (Na'vi first)
- * @param {LanguageCode} lang
- * @param {string} words
- * @returns {Word[][]}
+ * @param {LanguageCode} lang language code
+ * @param {string} words words to search
+ * @returns {Promise<Word[][]>}
  */
 async function search(lang: LanguageCode, words: string) {
   if (words === '') return [[]]
@@ -19,8 +19,8 @@ async function search(lang: LanguageCode, words: string) {
 
 /**
  * Search 1 or more words Na'vi -> Local
- * @param {string} navi
- * @returns {Word[][]}
+ * @param {string} navi Na'vi words to search
+ * @returns {Promise<Word[][]>}
  */
 async function fwew(navi: string) {
   if (navi === '') return [[]]
@@ -32,9 +32,9 @@ async function fwew(navi: string) {
 
 /**
  * Search 1 or more words Local -> Na'vi
- * @param {LanguageCode} lang
- * @param {string} local
- * @returns {Word[][]}
+ * @param {LanguageCode} lang language code
+ * @param {string} local local words to search
+ * @returns {Promise<Word[][]>}
  */
 async function fwewReverse(lang: LanguageCode, local: string) {
   if (local === '') return [[]]
@@ -48,8 +48,8 @@ async function fwewReverse(lang: LanguageCode, local: string) {
 
 /**
  * Search 1 or more words Na'vi -> Local, return only 1D array
- * @param {string} navi
- * @returns {Word[]}
+ * @param {string} navi Na'vi words to search
+ * @returns {Promise<Word[]>}
  */
 async function fwew1D(navi: string) {
   if (navi === '') return []
@@ -61,9 +61,9 @@ async function fwew1D(navi: string) {
 
 /**
  * Search 1 or more words Local -> Na'vi, return only 1D array
- * @param {LanguageCode} lang
- * @param {string} local
- * @returns {Word[]}
+ * @param {LanguageCode} lang language code
+ * @param {string} local local words to search
+ * @returns {Promise<Word[]>}
  */
 async function fwew1DReverse(lang: LanguageCode, local: string) {
   if (local === '') return []
@@ -78,8 +78,8 @@ async function fwew1DReverse(lang: LanguageCode, local: string) {
 /**
  * Search 1 or more words Na'vi -> Local, ignoring all affixed words
  * Use this only when you know you are searching a listed root word
- * @param {string} navi
- * @returns {Word[][]}
+ * @param {string} navi Na'vi words to search
+ * @returns {Promise<Word[][]>}
  */
 async function fwewSimple(navi: string) {
   if (navi === '') return [[]]

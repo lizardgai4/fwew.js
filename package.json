@@ -1,9 +1,9 @@
 {
   "name": "fwew.js",
-  "version": "1.2.5",
+  "version": "2.0.0",
   "author": "Corey Scheideman",
   "license": "GPL-3.0",
-  "description": "Fwew Na'vi Dictionary TypeScript/JavaScript Library",
+  "description": "JavaScript wrapper for the Fwew Na'vi Dictionary API written in TypeScript",
   "repository": "github:fwew/fwew.js",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -12,21 +12,15 @@
     "package.json"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "test": "mocha",
-    "coverage": "nyc --reporter=html --reporter=text mocha"
+    "build": "rollup -c"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.10",
-    "@types/mocha": "^10.0.4",
-    "@types/node": "^20.9.0",
-    "chai": "^4.3.10",
-    "mocha": "^10.2.0",
-    "nyc": "^15.1.0",
-    "rollup": "^4.4.1",
+    "@total-typescript/ts-reset": "^0.5.1",
+    "@types/node": "^20.9.4",
+    "rollup": "^4.5.1",
     "rollup-plugin-typescript2": "^0.36.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.2"
   },
   "dependencies": {}
 }
