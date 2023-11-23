@@ -56,16 +56,16 @@ export type AdjectiveMode =
 export type NameEnding = "'ite" | "'itan"
 
 export type LanguageCode =
-  | 'DE'
-  | 'EN'
-  | 'ET'
-  | 'FR'
-  | 'HU'
-  | 'NL'
-  | 'PL'
-  | 'RU'
-  | 'SV'
-  | 'TR'
+  | 'de'
+  | 'en'
+  | 'et'
+  | 'fr'
+  | 'hu'
+  | 'nl'
+  | 'pl'
+  | 'ru'
+  | 'sv'
+  | 'tr'
 
 export type LenitionTable = {
   kx: string
