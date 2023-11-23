@@ -5,10 +5,10 @@
   "license": "GPL-3.0",
   "description": "JavaScript wrapper for the Fwew Na'vi Dictionary API written in TypeScript",
   "repository": "github:fwew/fwew.js",
-  "main": "lib/index.js",
-  "module": "lib/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "files": [
-    "lib",
+    "dist",
     "package.json"
   ],
   "scripts": {
