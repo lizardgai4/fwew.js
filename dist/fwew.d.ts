@@ -1,7 +1,7 @@
 import type { LanguageCode, Word } from './types';
 /**
  * Search 1 or more words in both directions (Na'vi first)
- * @param {LanguageCode} lang language code
+ * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "ru" | "sv" | "tr")
  * @param {string} words words to search
  * @returns {Promise<Word[][]>}
  */
@@ -14,7 +14,7 @@ declare function search(lang: LanguageCode, words: string): Promise<Word[][]>;
 declare function fwew(navi: string): Promise<Word[][]>;
 /**
  * Search 1 or more words Local -> Na'vi
- * @param {LanguageCode} lang language code
+ * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "ru" | "sv" | "tr")
  * @param {string} local local words to search
  * @returns {Promise<Word[][]>}
  */
@@ -27,7 +27,7 @@ declare function fwewReverse(lang: LanguageCode, local: string): Promise<Word[][
 declare function fwew1D(navi: string): Promise<Word[]>;
 /**
  * Search 1 or more words Local -> Na'vi, return only 1D array
- * @param {LanguageCode} lang language code
+ * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "ru" | "sv" | "tr")
  * @param {string} local local words to search
  * @returns {Promise<Word[]>}
  */

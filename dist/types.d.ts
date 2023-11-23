@@ -39,7 +39,7 @@ export type Dialect = 'forest' | 'reef';
 export type NounMode = 'normal noun' | 'verb-er';
 export type AdjectiveMode = 'none' | 'any' | 'normal adjective' | 'genitive noun' | 'origin noun' | 'participle verb' | 'active participle verb' | 'passive participle verb';
 export type NameEnding = "'ite" | "'itan";
-export type LanguageCode = 'DE' | 'EN' | 'ET' | 'FR' | 'HU' | 'NL' | 'PL' | 'RU' | 'SV' | 'TR';
+export type LanguageCode = 'de' | 'en' | 'et' | 'fr' | 'hu' | 'nl' | 'pl' | 'ru' | 'sv' | 'tr';
 export type LenitionTable = {
     kx: string;
     px: string;

@@ -3,9 +3,9 @@ import type { AdjectiveMode, Dialect, NameEnding, NounMode } from './types'
 
 /**
  * Generate a single Na'vi first name
- * @param {string} n number of names to generate
- * @param {string} s number of syllables per name
- * @param {Dialect} dialect dialect to use
+ * @param {string} n number of names to generate [1-50]
+ * @param {string} s number of syllables per name [0-4]
+ * @param {Dialect} dialect dialect to use ('forest' | 'reef')
  * @returns {Promise<string>}
  */
 export async function nameSingle(n: string, s: string, dialect: Dialect) {
@@ -21,11 +21,11 @@ export async function nameSingle(n: string, s: string, dialect: Dialect) {
 /**
  * Generate a Na'vi full name
  * @param {NameEnding} ending 'ite for female, 'itan for male
- * @param {string} n number of names to generate
- * @param {string} s1 number of syllables in first name
- * @param {string} s2 number of syllables in family name
- * @param {string} s3 number of syllables in parent's name
- * @param {Dialect} dialect dialect to use
+ * @param {string} n number of names to generate [1-50]
+ * @param {string} s1 number of syllables in first name [0-4]
+ * @param {string} s2 number of syllables in family name [0-4]
+ * @param {string} s3 number of syllables in parent's name [0-4]
+ * @param {Dialect} dialect dialect to use ('forest' | 'reef')
  * @returns {Promise<string>}
  */
 export async function nameFull(
@@ -50,11 +50,11 @@ export async function nameFull(
 
 /**
  * Generate a Na'vi name with alu
- * @param {string} n number of names to generate
- * @param {string} s number of syllables in first name
+ * @param {string} n number of names to generate [1-50]
+ * @param {string} s number of syllables in first name [0-4]
  * @param {NounMode} nm noun mode
  * @param {AdjectiveMode} am adjective mode
- * @param {Dialect} dialect dialect to use
+ * @param {Dialect} dialect dialect to use ('forest' | 'reef')
  * @returns {Promise<string>}
  */
 export async function nameAlu(

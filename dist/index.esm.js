@@ -21,7 +21,7 @@ const endpoints = {
 
 /**
  * Search 1 or more words in both directions (Na'vi first)
- * @param {LanguageCode} lang language code
+ * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "ru" | "sv" | "tr")
  * @param {string} words words to search
  * @returns {Promise<Word[][]>}
  */
@@ -50,7 +50,7 @@ async function fwew(navi) {
 }
 /**
  * Search 1 or more words Local -> Na'vi
- * @param {LanguageCode} lang language code
+ * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "ru" | "sv" | "tr")
  * @param {string} local local words to search
  * @returns {Promise<Word[][]>}
  */
@@ -79,7 +79,7 @@ async function fwew1D(navi) {
 }
 /**
  * Search 1 or more words Local -> Na'vi, return only 1D array
- * @param {LanguageCode} lang language code
+ * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "ru" | "sv" | "tr")
  * @param {string} local local words to search
  * @returns {Promise<Word[]>}
  */
@@ -110,7 +110,7 @@ async function fwewSimple(navi) {
 
 /**
  * Get a list of all words or Get a list of words filtered by args
- * @param {string | undefined} args
+ * @param {string | undefined} args filter arguments e.g., 'word has kx' or 'word has kx and pos is vin.'
  * @returns {Promise<Word[]>}
  */
 async function list(args) {
@@ -124,9 +124,9 @@ async function list(args) {
 
 /**
  * Generate a single Na'vi first name
- * @param {string} n number of names to generate
- * @param {string} s number of syllables per name
- * @param {Dialect} dialect dialect to use
+ * @param {string} n number of names to generate [1-50]
+ * @param {string} s number of syllables per name [0-4]
+ * @param {Dialect} dialect dialect to use ('forest' | 'reef')
  * @returns {Promise<string>}
  */
 async function nameSingle(n, s, dialect) {
@@ -141,11 +141,11 @@ async function nameSingle(n, s, dialect) {
 /**
  * Generate a Na'vi full name
  * @param {NameEnding} ending 'ite for female, 'itan for male
- * @param {string} n number of names to generate
- * @param {string} s1 number of syllables in first name
- * @param {string} s2 number of syllables in family name
- * @param {string} s3 number of syllables in parent's name
- * @param {Dialect} dialect dialect to use
+ * @param {string} n number of names to generate [1-50]
+ * @param {string} s1 number of syllables in first name [0-4]
+ * @param {string} s2 number of syllables in family name [0-4]
+ * @param {string} s3 number of syllables in parent's name [0-4]
+ * @param {Dialect} dialect dialect to use ('forest' | 'reef')
  * @returns {Promise<string>}
  */
 async function nameFull(ending, n, s1, s2, s3, dialect) {
@@ -162,11 +162,11 @@ async function nameFull(ending, n, s1, s2, s3, dialect) {
 }
 /**
  * Generate a Na'vi name with alu
- * @param {string} n number of names to generate
- * @param {string} s number of syllables in first name
+ * @param {string} n number of names to generate [1-50]
+ * @param {string} s number of syllables in first name [0-4]
  * @param {NounMode} nm noun mode
  * @param {AdjectiveMode} am adjective mode
- * @param {Dialect} dialect dialect to use
+ * @param {Dialect} dialect dialect to use ('forest' | 'reef')
  * @returns {Promise<string>}
  */
 async function nameAlu(n, s, nm, am, dialect) {
@@ -205,9 +205,9 @@ async function naviToNumber(word) {
 }
 
 /**
- * Get given number of random words
+ * Get given number of random words, optionally filtered by args
  * @param {number} n number of random words to get
- * @param {string | undefined} args arguments to filter by (e.g., "word has tx")
+ * @param {string | undefined} args filter arguments e.g., 'word has kx' or 'word has kx and pos is vin.'
  * @returns {Promise<Word[]>}
  */
 async function random(n, args) {
