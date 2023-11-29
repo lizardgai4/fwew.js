@@ -6,7 +6,9 @@ import { FwewError, FwewNumber } from './types'
  * @param num number to convert to Na'vi;
  * @returns {Promise<FwewNumber | FwewError>}
  */
-export async function numberToNavi(num: number) {
+export async function numberToNavi(
+  num: number
+): Promise<FwewNumber | FwewError> {
   const url = endpoints.number_to_navi_url.replace('{num}', num.toString())
   const response = await fetch(url)
   const data = (await response.json()) as FwewNumber | FwewError
@@ -18,7 +20,9 @@ export async function numberToNavi(num: number) {
  * @param word Na'vi number word
  * @returns {Promise<FwewNumber | FwewError>}
  */
-export async function naviToNumber(word: string) {
+export async function naviToNumber(
+  word: string
+): Promise<FwewNumber | FwewError> {
   const url = endpoints.navi_to_number_url.replace('{word}', word)
   const response = await fetch(url)
   const data = (await response.json()) as FwewNumber | FwewError

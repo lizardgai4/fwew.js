@@ -8,7 +8,11 @@ import type { AdjectiveMode, Dialect, NameEnding, NounMode } from './types'
  * @param {Dialect} dialect dialect to use ('forest' | 'reef')
  * @returns {Promise<string>}
  */
-export async function nameSingle(n: string, s: string, dialect: Dialect) {
+export async function nameSingle(
+  n: string,
+  s: string,
+  dialect: Dialect
+): Promise<string> {
   const url = endpoints.name_single_url
     .replace('{n}', n)
     .replace('{s}', s)
@@ -35,7 +39,7 @@ export async function nameFull(
   s2: string,
   s3: string,
   dialect: string
-) {
+): Promise<string> {
   const url = endpoints.name_full_url
     .replace('{ending}', ending)
     .replace('{n}', n)
@@ -63,7 +67,7 @@ export async function nameAlu(
   nm: NounMode,
   am: AdjectiveMode,
   dialect: Dialect
-) {
+): Promise<string> {
   const url = endpoints.name_alu_url
     .replace('{n}', n)
     .replace('{s}', s)

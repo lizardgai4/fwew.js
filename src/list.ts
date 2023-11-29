@@ -6,7 +6,7 @@ import type { Word } from './types'
  * @param {string | undefined} args filter arguments e.g., 'word has kx' or 'word has kx and pos is vin.'
  * @returns {Promise<Word[]>}
  */
-export async function list(args?: string) {
+export async function list(args?: string): Promise<Word[]> {
   const url = args
     ? new URL(
         endpoints.list_filter_url.replace('{args}', args).replace('%', '%25')

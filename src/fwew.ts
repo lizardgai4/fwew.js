@@ -7,7 +7,7 @@ import type { LanguageCode, Word } from './types'
  * @param {string} words words to search
  * @returns {Promise<Word[][]>}
  */
-async function search(lang: LanguageCode, words: string) {
+async function search(lang: LanguageCode, words: string): Promise<Word[][]> {
   if (words === '') return [[]]
   const url = endpoints.search_url
     .replace('{lang}', lang)
@@ -22,7 +22,7 @@ async function search(lang: LanguageCode, words: string) {
  * @param {string} navi Na'vi words to search
  * @returns {Promise<Word[][]>}
  */
-async function fwew(navi: string) {
+async function fwew(navi: string): Promise<Word[][]> {
   if (navi === '') return [[]]
   const url = endpoints.fwew_url.replace('{nav}', navi)
   const response = await fetch(url)
@@ -36,7 +36,10 @@ async function fwew(navi: string) {
  * @param {string} local local words to search
  * @returns {Promise<Word[][]>}
  */
-async function fwewReverse(lang: LanguageCode, local: string) {
+async function fwewReverse(
+  lang: LanguageCode,
+  local: string
+): Promise<Word[][]> {
   if (local === '') return [[]]
   const url = endpoints.fwew_reverse_url
     .replace('{lang}', lang)
@@ -51,7 +54,7 @@ async function fwewReverse(lang: LanguageCode, local: string) {
  * @param {string} navi Na'vi words to search
  * @returns {Promise<Word[]>}
  */
-async function fwew1D(navi: string) {
+async function fwew1D(navi: string): Promise<Word[]> {
   if (navi === '') return []
   const url = endpoints.fwew_1d_url.replace('{nav}', navi)
   const response = await fetch(url)
@@ -65,7 +68,10 @@ async function fwew1D(navi: string) {
  * @param {string} local local words to search
  * @returns {Promise<Word[]>}
  */
-async function fwew1DReverse(lang: LanguageCode, local: string) {
+async function fwew1DReverse(
+  lang: LanguageCode,
+  local: string
+): Promise<Word[]> {
   if (local === '') return []
   const url = endpoints.fwew_1d_reverse_url
     .replace('{lang}', lang)
@@ -81,7 +87,7 @@ async function fwew1DReverse(lang: LanguageCode, local: string) {
  * @param {string} navi Na'vi words to search
  * @returns {Promise<Word[][]>}
  */
-async function fwewSimple(navi: string) {
+async function fwewSimple(navi: string): Promise<Word[][]> {
   if (navi === '') return [[]]
   const url = endpoints.fwew_simple_url.replace('{nav}', navi)
   const response = await fetch(url)

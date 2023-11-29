@@ -7,7 +7,7 @@ import type { Word } from './types'
  * @param {string | undefined} args filter arguments e.g., 'word has kx' or 'word has kx and pos is vin.'
  * @returns {Promise<Word[]>}
  */
-export async function random(n: number, args?: string) {
+export async function random(n: number, args?: string): Promise<Word[]> {
   if (args) {
     const url = endpoints.random_filter_url
       .replace('{n}', n.toString())
