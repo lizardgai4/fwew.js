@@ -1,11 +1,11 @@
-export type Affixes = {
+type Affixes = {
     Prefix: string[] | null;
     Infix: string[] | null;
     Suffix: string[] | null;
     Lenition: string[] | null;
     Comment: string[] | null;
 };
-export type Word = {
+type Word = {
     ID: string;
     Navi: string;
     IPA: string;
@@ -27,20 +27,20 @@ export type Word = {
     TR: string;
     Affixes: Affixes;
 };
-export type FwewNumber = {
-    navi: string;
+type FwewNumber = {
+    name: string;
     octal: string;
     decimal: string;
 };
-export type FwewError = {
+type FwewError = {
     message: string;
 };
-export type Dialect = 'forest' | 'reef';
-export type NounMode = 'normal noun' | 'verb-er';
-export type AdjectiveMode = 'none' | 'any' | 'normal adjective' | 'genitive noun' | 'origin noun' | 'participle verb' | 'active participle verb' | 'passive participle verb';
-export type NameEnding = "'ite" | "'itan";
-export type LanguageCode = 'de' | 'en' | 'et' | 'fr' | 'hu' | 'nl' | 'pl' | 'ru' | 'sv' | 'tr';
-export type LenitionTable = {
+type Dialect = 'forest' | 'reef';
+type NounMode = 'normal noun' | 'verb-er';
+type AdjectiveMode = 'none' | 'any' | 'normal adjective' | 'genitive noun' | 'origin noun' | 'participle verb' | 'active participle verb' | 'passive participle verb';
+type NameEnding = "'ite" | "'itan";
+type LanguageCode = 'de' | 'en' | 'et' | 'fr' | 'hu' | 'nl' | 'pl' | 'ru' | 'sv' | 'tr';
+type LenitionTable = {
     kx: string;
     px: string;
     tx: string;
@@ -50,8 +50,9 @@ export type LenitionTable = {
     ts: string;
     "'": string;
 };
-export type Version = {
+type Version = {
     APIVersion: string;
     FwewVersion: string;
     DictVersion: string;
 };
+export type { AdjectiveMode, Affixes, Dialect, FwewError, FwewNumber, LanguageCode, LenitionTable, NameEnding, NounMode, Version, Word };

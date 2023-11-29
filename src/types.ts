@@ -1,4 +1,4 @@
-export type Affixes = {
+type Affixes = {
   Prefix: string[] | null
   Infix: string[] | null
   Suffix: string[] | null
@@ -6,7 +6,7 @@ export type Affixes = {
   Comment: string[] | null
 }
 
-export type Word = {
+type Word = {
   ID: string
   Navi: string
   IPA: string
@@ -29,21 +29,21 @@ export type Word = {
   Affixes: Affixes
 }
 
-export type FwewNumber = {
-  navi: string
+type FwewNumber = {
+  name: string
   octal: string
   decimal: string
 }
 
-export type FwewError = {
+type FwewError = {
   message: string
 }
 
-export type Dialect = 'forest' | 'reef'
+type Dialect = 'forest' | 'reef'
 
-export type NounMode = 'normal noun' | 'verb-er'
+type NounMode = 'normal noun' | 'verb-er'
 
-export type AdjectiveMode =
+type AdjectiveMode =
   | 'none'
   | 'any'
   | 'normal adjective'
@@ -53,9 +53,9 @@ export type AdjectiveMode =
   | 'active participle verb'
   | 'passive participle verb'
 
-export type NameEnding = "'ite" | "'itan"
+type NameEnding = "'ite" | "'itan"
 
-export type LanguageCode =
+type LanguageCode =
   | 'de'
   | 'en'
   | 'et'
@@ -67,7 +67,7 @@ export type LanguageCode =
   | 'sv'
   | 'tr'
 
-export type LenitionTable = {
+type LenitionTable = {
   kx: string
   px: string
   tx: string
@@ -78,8 +78,22 @@ export type LenitionTable = {
   "'": string
 }
 
-export type Version = {
+type Version = {
   APIVersion: string
   FwewVersion: string
   DictVersion: string
+}
+
+export type {
+  AdjectiveMode,
+  Affixes,
+  Dialect,
+  FwewError,
+  FwewNumber,
+  LanguageCode,
+  LenitionTable,
+  NameEnding,
+  NounMode,
+  Version,
+  Word
 }
