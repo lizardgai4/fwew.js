@@ -54,7 +54,7 @@ type AdjectiveMode =
   | 'active participle verb'
   | 'passive participle verb'
 
-type NameEnding = "'ite" | "'itan"
+type NameEnding = "'ite" | "'itan" | "'itu"
 
 type LanguageCode =
   | 'de'

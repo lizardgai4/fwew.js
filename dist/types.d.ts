@@ -38,7 +38,7 @@ type FwewError = {
 type Dialect = 'interdialect' | 'forest' | 'reef';
 type NounMode = 'something' | 'normal noun' | 'verb-er';
 type AdjectiveMode = 'any' | 'something' | 'none' | 'normal adjective' | 'genitive noun' | 'origin noun' | 'participle verb' | 'active participle verb' | 'passive participle verb';
-type NameEnding = "'ite" | "'itan";
+type NameEnding = "'ite" | "'itan" | "'itu";
 type LanguageCode = 'de' | 'en' | 'et' | 'fr' | 'hu' | 'nl' | 'pl' | 'ru' | 'sv' | 'tr';
 type LenitionTable = {
     kx: string;

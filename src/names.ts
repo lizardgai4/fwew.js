@@ -24,7 +24,7 @@ export async function nameSingle(
 
 /**
  * Generate a Na'vi full name
- * @param {NameEnding} ending 'ite for female, 'itan for male
+ * @param {NameEnding} ending 'ite for female, 'itan for male, 'itu for non-binary
  * @param {string} n number of names to generate [1-50]
  * @param {string} s1 number of syllables in first name [0-4]
  * @param {string} s2 number of syllables in family name [0-4]
