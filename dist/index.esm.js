@@ -126,7 +126,7 @@ async function list(args) {
  * Generate a single Na'vi first name
  * @param {string} n number of names to generate [1-50]
  * @param {string} s number of syllables per name [0-4]
- * @param {Dialect} dialect dialect to use ('forest' | 'reef')
+ * @param {Dialect} dialect dialect to use ('interdialect' | 'forest' | 'reef')
  * @returns {Promise<string>}
  */
 async function nameSingle(n, s, dialect) {
@@ -145,7 +145,7 @@ async function nameSingle(n, s, dialect) {
  * @param {string} s1 number of syllables in first name [0-4]
  * @param {string} s2 number of syllables in family name [0-4]
  * @param {string} s3 number of syllables in parent's name [0-4]
- * @param {Dialect} dialect dialect to use ('forest' | 'reef')
+ * @param {Dialect} dialect dialect to use ('interdialect' | 'forest' | 'reef')
  * @returns {Promise<string>}
  */
 async function nameFull(ending, n, s1, s2, s3, dialect) {
@@ -166,7 +166,7 @@ async function nameFull(ending, n, s1, s2, s3, dialect) {
  * @param {string} s number of syllables in first name [0-4]
  * @param {NounMode} nm noun mode
  * @param {AdjectiveMode} am adjective mode
- * @param {Dialect} dialect dialect to use ('forest' | 'reef')
+ * @param {Dialect} dialect dialect to use ('interdialect' | 'forest' | 'reef')
  * @returns {Promise<string>}
  */
 async function nameAlu(n, s, nm, am, dialect) {

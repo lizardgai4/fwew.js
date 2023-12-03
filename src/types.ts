@@ -39,13 +39,14 @@ type FwewError = {
   message: string
 }
 
-type Dialect = 'forest' | 'reef'
+type Dialect = 'interdialect' | 'forest' | 'reef'
 
-type NounMode = 'normal noun' | 'verb-er'
+type NounMode = 'something' | 'normal noun' | 'verb-er'
 
 type AdjectiveMode =
-  | 'none'
   | 'any'
+  | 'something'
+  | 'none'
   | 'normal adjective'
   | 'genitive noun'
   | 'origin noun'
