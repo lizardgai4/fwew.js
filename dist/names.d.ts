@@ -9,7 +9,7 @@ import type { AdjectiveMode, Dialect, NameEnding, NounMode } from './types';
 export declare function nameSingle(n: string, s: string, dialect: Dialect): Promise<string>;
 /**
  * Generate a Na'vi full name
- * @param {NameEnding} ending 'ite for female, 'itan for male, 'itu for non-binary
+ * @param {NameEnding} ending random for random, 'ite for female, 'itan for male, 'itu for non-binary
  * @param {string} n number of names to generate [1-50]
  * @param {string} s1 number of syllables in first name [0-4]
  * @param {string} s2 number of syllables in family name [0-4]
