@@ -6,18 +6,20 @@ import type { AdjectiveMode, Dialect, NameEnding, NounMode } from './types'
  * @param {string} n number of names to generate [1-50]
  * @param {string} s number of syllables per name [0-4]
  * @param {Dialect} dialect dialect to use ('interdialect' | 'forest' | 'reef')
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
 export async function nameSingle(
   n: string,
   s: string,
-  dialect: Dialect
+  dialect: Dialect,
+  init?: RequestInit
 ): Promise<string> {
   const url = endpoints.name_single_url
     .replace('{n}', n)
     .replace('{s}', s)
     .replace('{dialect}', dialect)
-  const response = await fetch(url)
+  const response = await fetch(url, init)
   const data = (await response.json()) as string
   return data
 }
@@ -30,6 +32,7 @@ export async function nameSingle(
  * @param {string} s2 number of syllables in family name [0-4]
  * @param {string} s3 number of syllables in parent's name [0-4]
  * @param {Dialect} dialect dialect to use ('interdialect' | 'forest' | 'reef')
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
 export async function nameFull(
@@ -38,7 +41,8 @@ export async function nameFull(
   s1: string,
   s2: string,
   s3: string,
-  dialect: string
+  dialect: Dialect,
+  init?: RequestInit
 ): Promise<string> {
   const url = endpoints.name_full_url
     .replace('{ending}', ending)
@@ -47,7 +51,7 @@ export async function nameFull(
     .replace('{s2}', s2)
     .replace('{s3}', s3)
     .replace('{dialect}', dialect)
-  const response = await fetch(url)
+  const response = await fetch(url, init)
   const data = (await response.json()) as string
   return data
 }
@@ -59,6 +63,7 @@ export async function nameFull(
  * @param {NounMode} nm noun mode
  * @param {AdjectiveMode} am adjective mode
  * @param {Dialect} dialect dialect to use ('interdialect' | 'forest' | 'reef')
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
 export async function nameAlu(
@@ -66,7 +71,8 @@ export async function nameAlu(
   s: string,
   nm: NounMode,
   am: AdjectiveMode,
-  dialect: Dialect
+  dialect: Dialect,
+  init?: RequestInit
 ): Promise<string> {
   const url = endpoints.name_alu_url
     .replace('{n}', n)
@@ -74,7 +80,7 @@ export async function nameAlu(
     .replace('{nm}', nm)
     .replace('{am}', am)
     .replace('{dialect}', dialect)
-  const response = await fetch(url)
+  const response = await fetch(url, init)
   const data = (await response.json()) as string
   return data
 }

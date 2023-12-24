@@ -25,28 +25,30 @@ const endpoints = {
  * Search 1 or more words in both directions (Na'vi first)
  * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "ru" | "sv" | "tr")
  * @param {string} words words to search
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[][]>}
  */
-async function search(lang, words) {
+async function search(lang, words, init) {
     if (words === '')
         return [[]];
     const url = endpoints.search_url
         .replace('{lang}', lang)
         .replace('{words}', words);
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
 /**
  * Search 1 or more words Na'vi -> Local
  * @param {string} navi Na'vi words to search
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[][]>}
  */
-async function fwew(navi) {
+async function fwew(navi, init) {
     if (navi === '')
         return [[]];
     const url = endpoints.fwew_url.replace('{nav}', navi);
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
@@ -54,28 +56,30 @@ async function fwew(navi) {
  * Search 1 or more words Local -> Na'vi
  * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "ru" | "sv" | "tr")
  * @param {string} local local words to search
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[][]>}
  */
-async function fwewReverse(lang, local) {
+async function fwewReverse(lang, local, init) {
     if (local === '')
         return [[]];
     const url = endpoints.fwew_reverse_url
         .replace('{lang}', lang)
         .replace('{local}', local);
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
 /**
  * Search 1 or more words Na'vi -> Local, return only 1D array
  * @param {string} navi Na'vi words to search
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[]>}
  */
-async function fwew1D(navi) {
+async function fwew1D(navi, init) {
     if (navi === '')
         return [];
     const url = endpoints.fwew_1d_url.replace('{nav}', navi);
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
@@ -83,6 +87,7 @@ async function fwew1D(navi) {
  * Search 1 or more words Local -> Na'vi, return only 1D array
  * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "ru" | "sv" | "tr")
  * @param {string} local local words to search
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[]>}
  */
 async function fwew1DReverse(lang, local) {
@@ -99,13 +104,14 @@ async function fwew1DReverse(lang, local) {
  * Search 1 or more words Na'vi -> Local, ignoring all affixed words
  * Use this only when you know you are searching a listed root word
  * @param {string} navi Na'vi words to search
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[][]>}
  */
-async function fwewSimple(navi) {
+async function fwewSimple(navi, init) {
     if (navi === '')
         return [[]];
     const url = endpoints.fwew_simple_url.replace('{nav}', navi);
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
@@ -113,13 +119,14 @@ async function fwewSimple(navi) {
 /**
  * Get a list of all words or Get a list of words filtered by args
  * @param {string | undefined} args filter arguments e.g., 'word has kx' or 'word has kx and pos is vin.'
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[]>}
  */
-async function list(args) {
+async function list(args, init) {
     const url = args
         ? new URL(endpoints.list_filter_url.replace('{args}', args).replace('%', '%25'))
         : new URL(endpoints.list_url);
-    const response = await fetch(url.toString());
+    const response = await fetch(url.toString(), init);
     const data = (await response.json());
     return data;
 }
@@ -129,14 +136,15 @@ async function list(args) {
  * @param {string} n number of names to generate [1-50]
  * @param {string} s number of syllables per name [0-4]
  * @param {Dialect} dialect dialect to use ('interdialect' | 'forest' | 'reef')
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
-async function nameSingle(n, s, dialect) {
+async function nameSingle(n, s, dialect, init) {
     const url = endpoints.name_single_url
         .replace('{n}', n)
         .replace('{s}', s)
         .replace('{dialect}', dialect);
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
@@ -148,9 +156,10 @@ async function nameSingle(n, s, dialect) {
  * @param {string} s2 number of syllables in family name [0-4]
  * @param {string} s3 number of syllables in parent's name [0-4]
  * @param {Dialect} dialect dialect to use ('interdialect' | 'forest' | 'reef')
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
-async function nameFull(ending, n, s1, s2, s3, dialect) {
+async function nameFull(ending, n, s1, s2, s3, dialect, init) {
     const url = endpoints.name_full_url
         .replace('{ending}', ending)
         .replace('{n}', n)
@@ -158,7 +167,7 @@ async function nameFull(ending, n, s1, s2, s3, dialect) {
         .replace('{s2}', s2)
         .replace('{s3}', s3)
         .replace('{dialect}', dialect);
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
@@ -169,16 +178,17 @@ async function nameFull(ending, n, s1, s2, s3, dialect) {
  * @param {NounMode} nm noun mode
  * @param {AdjectiveMode} am adjective mode
  * @param {Dialect} dialect dialect to use ('interdialect' | 'forest' | 'reef')
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
-async function nameAlu(n, s, nm, am, dialect) {
+async function nameAlu(n, s, nm, am, dialect, init) {
     const url = endpoints.name_alu_url
         .replace('{n}', n)
         .replace('{s}', s)
         .replace('{nm}', nm)
         .replace('{am}', am)
         .replace('{dialect}', dialect);
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
@@ -186,22 +196,24 @@ async function nameAlu(n, s, nm, am, dialect) {
 /**
  * Convert a decimal integer in closed range [0,32767] to Na'vi
  * @param num number to convert to Na'vi;
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<FwewNumber | FwewError>}
  */
-async function numberToNavi(num) {
+async function numberToNavi(num, init) {
     const url = endpoints.number_to_navi_url.replace('{num}', num.toString());
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
 /**
  * Convert a Na'vi number word to decimal and octal
  * @param word Na'vi number word
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<FwewNumber | FwewError>}
  */
-async function naviToNumber(word) {
+async function naviToNumber(word, init) {
     const url = endpoints.navi_to_number_url.replace('{word}', word);
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
@@ -210,19 +222,20 @@ async function naviToNumber(word) {
  * Get given number of random words, optionally filtered by args
  * @param {number} n number of random words to get
  * @param {string | undefined} args filter arguments e.g., 'word has kx' or 'word has kx and pos is vin.'
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[]>}
  */
-async function random(n, args) {
+async function random(n, args, init) {
     if (args) {
         const url = endpoints.random_filter_url
             .replace('{n}', n.toString())
             .replace('{args}', args);
-        const response = await fetch(url);
+        const response = await fetch(url, init);
         const data = (await response.json());
         return data;
     }
     const url = endpoints.random_url.replace('{n}', n.toString());
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const data = (await response.json());
     return data;
 }
