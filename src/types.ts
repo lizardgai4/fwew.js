@@ -23,6 +23,7 @@ type Word = {
   HU: string
   NL: string
   PL: string
+  PT: string
   RU: string
   SV: string
   TR: string
@@ -64,6 +65,7 @@ type LanguageCode =
   | 'hu'
   | 'nl'
   | 'pl'
+  | 'pt'
   | 'ru'
   | 'sv'
   | 'tr'
