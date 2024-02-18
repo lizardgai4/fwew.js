@@ -18,6 +18,7 @@ type Word = {
   InfixDots: string
   DE: string
   EN: string
+  ES: string
   ET: string
   FR: string
   HU: string
@@ -60,6 +61,7 @@ type NameEnding = 'random' | "'ite" | "'itan" | "'itu"
 type LanguageCode =
   | 'de'
   | 'en'
+  | 'es'
   | 'et'
   | 'fr'
   | 'hu'

@@ -3,7 +3,7 @@ import type { LanguageCode, Word } from './types'
 
 /**
  * Search 1 or more words in both directions (Na'vi first)
- * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr")
+ * @param {LanguageCode} lang language code
  * @param {string} words words to search
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[][]>}
@@ -34,7 +34,7 @@ async function fwew(navi: string, init?: RequestInit) {
 
 /**
  * Search 1 or more words Local -> Na'vi
- * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr")
+ * @param {LanguageCode} lang language code
  * @param {string} local local words to search
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[][]>}
@@ -69,7 +69,7 @@ async function fwew1D(navi: string, init?: RequestInit) {
 
 /**
  * Search 1 or more words Local -> Na'vi, return only 1D array
- * @param {LanguageCode} lang language code ("de" | "en" | "et" | "fr" | "hu" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr")
+ * @param {LanguageCode} lang language code
  * @param {string} local local words to search
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[]>}
