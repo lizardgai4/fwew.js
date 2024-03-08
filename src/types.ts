@@ -71,6 +71,7 @@ type LanguageCode =
   | 'ru'
   | 'sv'
   | 'tr'
+  | 'uk'
 
 type LenitionTable = {
   kx: string
