@@ -4,7 +4,10 @@
   "author": "Corey Scheideman",
   "license": "GPL-3.0",
   "description": "JavaScript wrapper for the Fwew Na'vi Dictionary API written in TypeScript",
-  "repository": "github:fwew/fwew.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fwew/fwew.js.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "files": [
