@@ -6,7 +6,7 @@ export const endpoints = {
   fwew_simple_url: `${API_BASE}/fwew-simple/{nav}`,
   fwew_reverse_url: `${API_BASE}/fwew/r/{lang}/{local}`,
   fwew_1d_reverse_url: `${API_BASE}/fwew-1d/r/{lang}/{local}`,
-  search_url: `${API_BASE}/search/{lang}/{words}}`,
+  search_url: `${API_BASE}/search/{lang}/{words}`,
   list_url: `${API_BASE}/list`,
   list_filter_url: `${API_BASE}/list/{args}`,
   random_url: `${API_BASE}/random/{n}`,
