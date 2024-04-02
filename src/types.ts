@@ -28,6 +28,7 @@ type Word = {
   RU: string
   SV: string
   TR: string
+  UK: string
   Affixes: Affixes
 }
 
