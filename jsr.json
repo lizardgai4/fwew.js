@@ -1,0 +1,5 @@
+{
+  "name": "@corscheid/fwew",
+  "version": "2.4.4",
+  "exports": "./src/index.ts"
+}
