@@ -8,7 +8,11 @@ import type { LanguageCode, Word } from './types'
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[][]>}
  */
-async function search(lang: LanguageCode, words: string, init?: RequestInit) {
+async function search(
+  lang: LanguageCode,
+  words: string,
+  init?: RequestInit
+): Promise<Word[][]> {
   if (words === '') return [[]]
   const url = endpoints.search_url
     .replace('{lang}', lang)
@@ -24,7 +28,7 @@ async function search(lang: LanguageCode, words: string, init?: RequestInit) {
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[][]>}
  */
-async function fwew(navi: string, init?: RequestInit) {
+async function fwew(navi: string, init?: RequestInit): Promise<Word[][]> {
   if (navi === '') return [[]]
   const url = endpoints.fwew_url.replace('{nav}', navi)
   const response = await fetch(url, init)
@@ -43,7 +47,7 @@ async function fwewReverse(
   lang: LanguageCode,
   local: string,
   init?: RequestInit
-) {
+): Promise<Word[][]> {
   if (local === '') return [[]]
   const url = endpoints.fwew_reverse_url
     .replace('{lang}', lang)
@@ -59,7 +63,7 @@ async function fwewReverse(
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[]>}
  */
-async function fwew1D(navi: string, init?: RequestInit) {
+async function fwew1D(navi: string, init?: RequestInit): Promise<Word[]> {
   if (navi === '') return []
   const url = endpoints.fwew_1d_url.replace('{nav}', navi)
   const response = await fetch(url, init)
@@ -74,7 +78,10 @@ async function fwew1D(navi: string, init?: RequestInit) {
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[]>}
  */
-async function fwew1DReverse(lang: LanguageCode, local: string) {
+async function fwew1DReverse(
+  lang: LanguageCode,
+  local: string
+): Promise<Word[]> {
   if (local === '') return []
   const url = endpoints.fwew_1d_reverse_url
     .replace('{lang}', lang)
@@ -91,7 +98,7 @@ async function fwew1DReverse(lang: LanguageCode, local: string) {
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[][]>}
  */
-async function fwewSimple(navi: string, init?: RequestInit) {
+async function fwewSimple(navi: string, init?: RequestInit): Promise<Word[][]> {
   if (navi === '') return [[]]
   const url = endpoints.fwew_simple_url.replace('{nav}', navi)
   const response = await fetch(url, init)
