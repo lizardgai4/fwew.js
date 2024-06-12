@@ -41,7 +41,7 @@ async function homonyms(init?: RequestInit): Promise<Word[][]> {
  * Returns whether or not the given string is valid Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
- * @returns {Promise<Word[][]>}
+ * @returns {Promise<String>}
  */
 async function valid(words: string, init?: RequestInit): Promise<String> {
   const url = endpoints.validity_url.replace('{i}', words)
@@ -53,7 +53,7 @@ async function valid(words: string, init?: RequestInit): Promise<String> {
 /**
  * Returns a string saying how long the dict is
  * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<Word[][]>}
+ * @returns {Promise<String>}
  */
 async function dictLen(init?: RequestInit): Promise<String> {
   const url = endpoints.dict_len_url
@@ -66,7 +66,7 @@ async function dictLen(init?: RequestInit): Promise<String> {
  * Returns whether or not the given string is valid Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
- * @returns {Promise<Word[][]>}
+ * @returns {Promise<String[]>}
  */
 async function reefMe(words: string, init?: RequestInit): Promise<String[]> {
   const url = endpoints.reef_ipa_url.replace('{i}', words)
@@ -78,7 +78,7 @@ async function reefMe(words: string, init?: RequestInit): Promise<String[]> {
 /**
  * Returns whether or not the given string is valid Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<Word[][]>}
+ * @returns {Promise<Map<string,Map<string,Map<string,number>>>>}
  */
 async function phonemeFrequency(init?: RequestInit): Promise<Map<string,Map<string,Map<string,number>>>> {
   const url = endpoints.reef_ipa_url
