@@ -19,9 +19,9 @@ export const endpoints = {
   name_full_url: `${API_BASE}/name/full/{ending}/{n}/{s1}/{s2}/{s3}/{dialect}`,
   name_alu_url: `${API_BASE}/name/alu/{n}/{s}/{nm}/{am}/{dialect}`,
   homonyms_url: `${API_BASE}/homonyms`,
-	oddballs_url: `${API_BASE}/oddballs`,
-	multi_ipa_url: `${API_BASE}/multi-ipa`,
-	dict_len_url: `${API_BASE}/total-words`,
-	reef_ipa_url: `${API_BASE}/reef/{i}`,
-	validity_url: `${API_BASE}/valid/{i}`
+  oddballs_url: `${API_BASE}/oddballs`,
+  multi_ipa_url: `${API_BASE}/multi-ipa`,
+  dict_len_url: `${API_BASE}/total-words`,
+  reef_ipa_url: `${API_BASE}/reef/{i}`,
+  validity_url: `${API_BASE}/valid/{i}`
 }
