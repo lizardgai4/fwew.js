@@ -63,7 +63,7 @@ async function dictLen(init?: RequestInit): Promise<String> {
 }
 
 /**
- * Returns whether or not the given string is valid Na'vi
+ * Returns reef dialect spelling and IPA given interdialect IPA
  * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
  * @returns {Promise<String[]>}
@@ -76,27 +76,15 @@ async function reefMe(words: string, init?: RequestInit): Promise<String[]> {
 }
 
 /**
- * Returns whether or not the given string is valid Na'vi
+ * Returns a map of how often every phoneme appears in Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Map<string,Map<string,Map<string,number>>>>}
  */
 async function phonemeFrequency(init?: RequestInit): Promise<Map<string,Map<string,Map<string,number>>>> {
-  const url = endpoints.reef_ipa_url
+  const url = endpoints.phonemes_url
   const response = await fetch(url, init)
   const data = (await response.json()) as Promise<Map<string,Map<string,Map<string,number>>>>
   return data
 }
 
-/**
- * Returns Na'vi swear words
- * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<String[]>}
- */
-async function profanity(init?: RequestInit): Promise<String[]> {
-  const url = endpoints.reef_ipa_url
-  const response = await fetch(url, init)
-  const data = (await response.json()) as Promise<String[]>
-  return data
-}
-
-export { multiIPA, oddballs, homonyms, valid, dictLen, reefMe, phonemeFrequency, profanity }
+export { multiIPA, oddballs, homonyms, valid, dictLen, reefMe, phonemeFrequency }
