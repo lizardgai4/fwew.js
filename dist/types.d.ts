@@ -53,9 +53,10 @@ type LenitionTable = {
     ts: string;
     "'": string;
 };
+type PhonemeFrequencyMap = Map<string, Map<string, Map<string, number>>>;
 type Version = {
     APIVersion: string;
     FwewVersion: string;
     DictVersion: string;
 };
-export type { AdjectiveMode, Affixes, Dialect, FwewError, FwewNumber, LanguageCode, LenitionTable, NameEnding, NounMode, Version, Word };
+export type { AdjectiveMode, Affixes, Dialect, FwewError, FwewNumber, LanguageCode, LenitionTable, NameEnding, NounMode, PhonemeFrequencyMap, Version, Word };

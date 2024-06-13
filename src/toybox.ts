@@ -1,5 +1,5 @@
 import { endpoints } from './constants'
-import type { Word } from './types'
+import type { PhonemeFrequencyMap, Word } from './types'
 
 /**
  * Returns all the words with multiple IPAs
@@ -78,13 +78,23 @@ async function reefMe(words: string, init?: RequestInit): Promise<String[]> {
 /**
  * Returns whether or not the given string is valid Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<Map<string,Map<string,Map<string,number>>>>}
+ * @returns {Promise<PhonemeFrequencyMap>}
  */
-async function phonemeFrequency(init?: RequestInit): Promise<Map<string,Map<string,Map<string,number>>>> {
+async function phonemeFrequency(
+  init?: RequestInit
+): Promise<PhonemeFrequencyMap> {
   const url = endpoints.reef_ipa_url
   const response = await fetch(url, init)
-  const data = (await response.json()) as Promise<Map<string,Map<string,Map<string,number>>>>
+  const data = (await response.json()) as Promise<PhonemeFrequencyMap>
   return data
 }
 
-export { multiIPA, oddballs, homonyms, valid, dictLen, reefMe, phonemeFrequency }
+export {
+  dictLen,
+  homonyms,
+  multiIPA,
+  oddballs,
+  phonemeFrequency,
+  reefMe,
+  valid
+}

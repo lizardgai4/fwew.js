@@ -1,4 +1,4 @@
-import type { Word } from './types';
+import type { PhonemeFrequencyMap, Word } from './types';
 /**
  * Returns all the words with multiple IPAs
  * @param {RequestInit | undefined} init fetch options (optional)
@@ -40,7 +40,7 @@ declare function reefMe(words: string, init?: RequestInit): Promise<String[]>;
 /**
  * Returns whether or not the given string is valid Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<Map<string,Map<string,Map<string,number>>>>}
+ * @returns {Promise<PhonemeFrequencyMap>}
  */
-declare function phonemeFrequency(init?: RequestInit): Promise<Map<string, Map<string, Map<string, number>>>>;
-export { multiIPA, oddballs, homonyms, valid, dictLen, reefMe, phonemeFrequency };
+declare function phonemeFrequency(init?: RequestInit): Promise<PhonemeFrequencyMap>;
+export { dictLen, homonyms, multiIPA, oddballs, phonemeFrequency, reefMe, valid };

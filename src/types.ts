@@ -85,6 +85,8 @@ type LenitionTable = {
   "'": string
 }
 
+type PhonemeFrequencyMap = Map<string, Map<string, Map<string, number>>>
+
 type Version = {
   APIVersion: string
   FwewVersion: string
@@ -101,6 +103,7 @@ export type {
   LenitionTable,
   NameEnding,
   NounMode,
+  PhonemeFrequencyMap,
   Version,
   Word
 }
