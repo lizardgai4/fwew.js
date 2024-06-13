@@ -16,4 +16,10 @@ export declare const endpoints: {
     name_single_url: string;
     name_full_url: string;
     name_alu_url: string;
+    homonyms_url: string;
+    oddballs_url: string;
+    multi_ipa_url: string;
+    dict_len_url: string;
+    reef_ipa_url: string;
+    validity_url: string;
 };
