@@ -333,6 +333,86 @@ async function random(n, args, init) {
 }
 
 /**
+ * Returns all the words with multiple IPAs
+ * @param {RequestInit | undefined} init fetch options (optional)
+ * @returns {Promise<Word[][]>}
+ */
+async function multiIPA(init) {
+    const url = endpoints.multi_ipa_url;
+    const response = await fetch(url, init);
+    const data = (await response.json());
+    return data;
+}
+/**
+ * Returns all the words which fall outside of normal Na'vi phonotactics
+ * @param {RequestInit | undefined} init fetch options (optional)
+ * @returns {Promise<Word[][]>}
+ */
+async function oddballs(init) {
+    const url = endpoints.oddballs_url;
+    const response = await fetch(url, init);
+    const data = (await response.json());
+    return data;
+}
+/**
+ * Returns all the words with more than one dictionary entry
+ * @param {RequestInit | undefined} init fetch options (optional)
+ * @returns {Promise<Word[][]>}
+ */
+async function homonyms(init) {
+    const url = endpoints.oddballs_url;
+    const response = await fetch(url, init);
+    const data = (await response.json());
+    return data;
+}
+/**
+ * Returns whether or not the given string is valid Na'vi
+ * @param {RequestInit | undefined} init fetch options (optional)
+ * @param {string} words words to search
+ * @returns {Promise<String>}
+ */
+async function valid(words, init) {
+    const url = endpoints.validity_url.replace('{i}', words);
+    const response = await fetch(url, init);
+    const data = (await response.json());
+    return data;
+}
+/**
+ * Returns a string saying how long the dict is
+ * @param {RequestInit | undefined} init fetch options (optional)
+ * @returns {Promise<String>}
+ */
+async function dictLen(init) {
+    const url = endpoints.dict_len_url;
+    const response = await fetch(url, init);
+    const data = (await response.json());
+    return data;
+}
+/**
+ * Returns whether or not the given string is valid Na'vi
+ * @param {RequestInit | undefined} init fetch options (optional)
+ * @param {string} words words to search
+ * @returns {Promise<String[]>}
+ */
+async function reefMe(words, init) {
+    const url = endpoints.reef_ipa_url.replace('{i}', words);
+    const response = await fetch(url, init);
+    const data = (await response.json());
+    return data;
+}
+/**
+ * Returns whether or not the given string is valid Na'vi
+ * @param {RequestInit | undefined} init fetch options (optional)
+ * @returns {Promise<PhonemeFrequencyMap>}
+ */
+async function phonemeFrequency(init) {
+    const url = endpoints.reef_ipa_url;
+    const response = await fetch(url, init);
+    const data = (await response.json());
+    return data;
+}
+
+/**
  * Get the Na'vi lenition table
  * @returns {Promise<LenitionTable>}
  */
@@ -353,13 +433,16 @@ async function version() {
     return data;
 }
 
+exports.dictLen = dictLen;
 exports.fwew = fwew;
 exports.fwew1D = fwew1D;
 exports.fwew1DReverse = fwew1DReverse;
 exports.fwewReverse = fwewReverse;
 exports.fwewSimple = fwewSimple;
+exports.homonyms = homonyms;
 exports.lenition = lenition;
 exports.list = list;
+exports.multiIPA = multiIPA;
 exports.nameAlu = nameAlu;
 exports.nameFull = nameFull;
 exports.nameSingle = nameSingle;
@@ -372,6 +455,10 @@ exports.phonemeFrequency = phonemeFrequency;
 exports.profanity = profanity;
 exports.naviToNumber = naviToNumber;
 exports.numberToNavi = numberToNavi;
+exports.oddballs = oddballs;
+exports.phonemeFrequency = phonemeFrequency;
 exports.random = random;
+exports.reefMe = reefMe;
 exports.search = search;
+exports.valid = valid;
 exports.version = version;
