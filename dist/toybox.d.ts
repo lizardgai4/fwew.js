@@ -50,4 +50,11 @@ declare function reefMe(words: string, init?: RequestInit): Promise<String[]>;
  */
 declare function phonemeFrequency(init?: RequestInit): Promise<Map<string,Map<string,Map<string,number>>>>;
 
-export { multiIPA, oddballs, homonyms, valid, dictLen, reefMe, phonemeFrequency };
+/**
+ * Returns all the Na'vi swear words
+ * @param {RequestInit | undefined} init fetch options (optional)
+ * @returns {Promise<Word[][]>}
+ */
+declare function profanity(init?: RequestInit): Promise<Word[][]>;
+
+export { multiIPA, oddballs, homonyms, valid, dictLen, reefMe, phonemeFrequency, profanity };

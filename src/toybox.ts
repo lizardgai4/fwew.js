@@ -87,4 +87,16 @@ async function phonemeFrequency(init?: RequestInit): Promise<Map<string,Map<stri
   return data
 }
 
-export { multiIPA, oddballs, homonyms, valid, dictLen, reefMe, phonemeFrequency }
+/**
+ * Returns Na'vi swear words
+ * @param {RequestInit | undefined} init fetch options (optional)
+ * @returns {Promise<String[]>}
+ */
+async function profanity(init?: RequestInit): Promise<String[]> {
+  const url = endpoints.reef_ipa_url
+  const response = await fetch(url, init)
+  const data = (await response.json()) as Promise<String[]>
+  return data
+}
+
+export { multiIPA, oddballs, homonyms, valid, dictLen, reefMe, phonemeFrequency, profanity }

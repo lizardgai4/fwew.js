@@ -274,6 +274,18 @@ async function phonemeFrequency(init) {
 }
 
 /**
+ * Returns Na'vi swear words
+ * @param {RequestInit | undefined} init fetch options (optional)
+ * @returns {Promise<String[]>}
+ */
+async function profanity(init) {
+    const url = endpoints.reef_ipa_url;
+    const response = await fetch(url, init);
+    const data = (await response.json());
+    return data
+}
+
+/**
  * Convert a decimal integer in closed range [0,32767] to Na'vi
  * @param num number to convert to Na'vi;
  * @param {RequestInit | undefined} init fetch options (optional)
@@ -357,6 +369,7 @@ exports.valid = valid;
 exports.dictLen = dictLen;
 exports.reefMe = reefMe;
 exports.phonemeFrequency = phonemeFrequency;
+exports.profanity = profanity;
 exports.naviToNumber = naviToNumber;
 exports.numberToNavi = numberToNavi;
 exports.random = random;
