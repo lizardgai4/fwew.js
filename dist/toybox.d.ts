@@ -1,4 +1,4 @@
-import type { LanguageCode, Word } from './types';
+import type { Word } from './types';
 /**
  * Returns all the words with multiple IPAs
  * @param {RequestInit | undefined} init fetch options (optional)
