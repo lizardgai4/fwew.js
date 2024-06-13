@@ -31,7 +31,7 @@ async function oddballs(init?: RequestInit): Promise<Word[][]> {
  * @returns {Promise<Word[][]>}
  */
 async function homonyms(init?: RequestInit): Promise<Word[][]> {
-  const url = endpoints.oddballs_url
+  const url = endpoints.homonyms_url
   const response = await fetch(url, init)
   const data = (await response.json()) as Word[][]
   return data
