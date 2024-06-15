@@ -23,5 +23,6 @@ export const endpoints = {
   multi_ipa_url: `${API_BASE}/multi-ipa`,
   dict_len_url: `${API_BASE}/total-words`,
   reef_ipa_url: `${API_BASE}/reef/{i}`,
-  validity_url: `${API_BASE}/valid/{i}`
+  validity_url: `${API_BASE}/valid/{i}`,
+  phonemes_url: `${API_BASE}/phonemedistros`,
 }

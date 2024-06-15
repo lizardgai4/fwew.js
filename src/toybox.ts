@@ -31,7 +31,7 @@ async function oddballs(init?: RequestInit): Promise<Word[][]> {
  * @returns {Promise<Word[][]>}
  */
 async function homonyms(init?: RequestInit): Promise<Word[][]> {
-  const url = endpoints.oddballs_url
+  const url = endpoints.homonyms_url
   const response = await fetch(url, init)
   const data = (await response.json()) as Word[][]
   return data
@@ -63,7 +63,7 @@ async function dictLen(init?: RequestInit): Promise<String> {
 }
 
 /**
- * Returns whether or not the given string is valid Na'vi
+ * Returns reef dialect spelling and IPA given interdialect IPA
  * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
  * @returns {Promise<String[]>}
@@ -76,14 +76,13 @@ async function reefMe(words: string, init?: RequestInit): Promise<String[]> {
 }
 
 /**
- * Returns whether or not the given string is valid Na'vi
+ * Returns a map of how often every phoneme appears in Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<PhonemeFrequencyMap>}
  */
-async function phonemeFrequency(
-  init?: RequestInit
-): Promise<PhonemeFrequencyMap> {
-  const url = endpoints.reef_ipa_url
+
+async function phonemeFrequency(init?: RequestInit): Promise<Map<string,Map<string,Map<string,number>>>> {
+  const url = endpoints.phonemes_url
   const response = await fetch(url, init)
   const data = (await response.json()) as Promise<PhonemeFrequencyMap>
   return data
