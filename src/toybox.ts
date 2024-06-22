@@ -1,5 +1,5 @@
 import { endpoints } from './constants'
-import type { PhonemeFrequencyMap, Word } from './types'
+import type { Word } from './types'
 
 /**
  * Returns all the words with multiple IPAs
@@ -81,10 +81,10 @@ async function reefMe(words: string, init?: RequestInit): Promise<String[]> {
  * @returns {Promise<PhonemeFrequencyMap>}
  */
 
-async function phonemeFrequency(init?: RequestInit): Promise<Map<string,Map<string,Map<string,number>>>> {
+async function phonemeFrequency(init?: RequestInit): Promise<string[][][]> {
   const url = endpoints.phonemes_url
   const response = await fetch(url, init)
-  const data = (await response.json()) as Promise<PhonemeFrequencyMap>
+  const data = (await response.json()) as Promise<string[][][]>
   return data
 }
 
