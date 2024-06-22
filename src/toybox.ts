@@ -78,7 +78,7 @@ async function reefMe(words: string, init?: RequestInit): Promise<String[]> {
 /**
  * Returns a map of how often every phoneme appears in Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<PhonemeFrequencyMap>}
+ * @returns {Promise<string[][][]>}
  */
 
 async function phonemeFrequency(init?: RequestInit): Promise<string[][][]> {
