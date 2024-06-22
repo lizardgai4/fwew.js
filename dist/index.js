@@ -264,7 +264,7 @@ async function reefMe(words, init) {
 /**
  * Returns whether or not the given string is valid Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<Map<string,Map<string,Map<string,number>>>>}
+ * @returns {Promise<string[][][]>}
  */
 async function phonemeFrequency(init) {
   const url = endpoints.reef_ipa_url;

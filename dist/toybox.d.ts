@@ -49,7 +49,7 @@ declare function reefMe(words: string, init?: RequestInit): Promise<String[]>;
  * @returns {Promise<PhonemeFrequencyMap>}
  */
 
-declare function phonemeFrequency(init?: RequestInit): Promise<Map<string,Map<string,Map<string,number>>>>;
+declare function phonemeFrequency(init?: RequestInit): Promise<string[][][]>;
 
 /**
  * Returns all the Na'vi swear words
