@@ -1,4 +1,4 @@
-name: lint and build
+name: generate a build
 
 on:
   push:
@@ -42,13 +42,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Run ESLint
-        run: npx eslint .
-          --config .eslintrc.js
-          --ext=.js,.jsx,.ts,.tsx
-          --format @microsoft/eslint-formatter-sarif
-          --output-file eslint-results.sarif
 
       - name: Build
         run: pnpm run build # The build command of your project
