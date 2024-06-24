@@ -47,4 +47,4 @@ jobs:
         run: pnpm run build # The build command of your project
 
       - name: Check
-        run: git status -s
+        run: STATUS=$(git status -s); echo $STATUS; if [ ! "$STATUS" = "" ]; then exit 1; fi
