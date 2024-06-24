@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build and Push
+    name: Build and Check
 
     steps:
       - name: git-checkout
@@ -45,3 +45,6 @@ jobs:
 
       - name: Build
         run: pnpm run build # The build command of your project
+
+      - name: Check
+        run: git status -s
