@@ -217,7 +217,7 @@ async function oddballs(init) {
  * @returns {Promise<Word[][]>}
  */
 async function homonyms(init) {
-  const url = endpoints.oddballs_url;
+  const url = endpoints.homonyms_url;
   const response = await fetch(url, init);
   const data = (await response.json());
   return data;
@@ -264,7 +264,7 @@ async function reefMe(words, init) {
 /**
  * Returns whether or not the given string is valid Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<Map<string,Map<string,Map<string,number>>>>}
+ * @returns {Promise<string[][][]>}
  */
 async function phonemeFrequency(init) {
   const url = endpoints.reef_ipa_url;
@@ -360,7 +360,7 @@ async function oddballs(init) {
  * @returns {Promise<Word[][]>}
  */
 async function homonyms(init) {
-    const url = endpoints.oddballs_url;
+    const url = endpoints.homonyms_url;
     const response = await fetch(url, init);
     const data = (await response.json());
     return data;
@@ -403,7 +403,7 @@ async function reefMe(words, init) {
 /**
  * Returns whether or not the given string is valid Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<PhonemeFrequencyMap>}
+ * @returns {Promise<string[][][]>}
  */
 async function phonemeFrequency(init) {
     const url = endpoints.reef_ipa_url;
