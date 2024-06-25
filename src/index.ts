@@ -29,7 +29,6 @@ import type {
   LenitionTable,
   NameEnding,
   NounMode,
-  PhonemeFrequencyMap,
   Version,
   Word
 } from './types'
@@ -70,7 +69,6 @@ export type {
   LenitionTable,
   NameEnding,
   NounMode,
-  PhonemeFrequencyMap,
   Version,
   Word
 }
