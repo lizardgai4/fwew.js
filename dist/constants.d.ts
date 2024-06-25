@@ -22,4 +22,5 @@ export declare const endpoints: {
     dict_len_url: string;
     reef_ipa_url: string;
     validity_url: string;
+    phonemes_url: string;
 };
