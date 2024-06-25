@@ -24,7 +24,8 @@ const endpoints = {
     multi_ipa_url: `${API_BASE}/multi-ipa`,
     dict_len_url: `${API_BASE}/total-words`,
     reef_ipa_url: `${API_BASE}/reef/{i}`,
-    validity_url: `${API_BASE}/valid/{i}`
+    validity_url: `${API_BASE}/valid/{i}`,
+    phonemes_url: `${API_BASE}/phonemedistros`,
 };
 
 /**
@@ -200,92 +201,6 @@ async function nameAlu(n, s, nm, am, dialect, init) {
 }
 
 /**
- * Returns all the words which fall outside of normal Na'vi phonotactics
- * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<Word[][]>}
- */
-async function oddballs(init) {
-    const url = endpoints.oddballs_url;
-    const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
-}
-  
-/**
- * Returns all the words with more than one dictionary entry
- * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<Word[][]>}
- */
-async function homonyms(init) {
-  const url = endpoints.homonyms_url;
-  const response = await fetch(url, init);
-  const data = (await response.json());
-  return data;
-}
-  
-/**
- * Returns whether or not the given string is valid Na'vi
- * @param {RequestInit | undefined} init fetch options (optional)
- * @param {string} words words to search
- * @returns {Promise<String>}
- */
-async function valid(words, init) {
-  const url = endpoints.validity_url.replace('{i}', words);
-  const response = await fetch(url, init);
-  const data = (await response.json());
-  return data;
-}
-  
-/**
- * Returns a string saying how long the dict is
- * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<String>}
- */
-async function dictLen(init) {
-  const url = endpoints.dict_len_url;
-  const response = await fetch(url, init);
-  const data = (await response.json());
-  return data;
-}
-  
-/**
- * Returns whether or not the given string is valid Na'vi
- * @param {RequestInit | undefined} init fetch options (optional)
- * @param {string} words words to search
- * @returns {Promise<String[]>}
- */
-async function reefMe(words, init) {
-  const url = endpoints.reef_ipa_url.replace('{i}', words);
-  const response = await fetch(url, init);
-  const data = (await response.json());
-  return data;
-}
-  
-/**
- * Returns whether or not the given string is valid Na'vi
- * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<string[][][]>}
- */
-async function phonemeFrequency(init) {
-  const url = endpoints.reef_ipa_url;
-  const response = await fetch(url, init);
-  const data = (await response.json());
-  return data;
-}
-
-/**
- * Returns Na'vi swear words
- * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<String[]>}
- */
-async function profanity(init) {
-    const url = endpoints.reef_ipa_url;
-    const response = await fetch(url, init);
-    const data = (await response.json());
-    return data
-}
-
-/**
  * Convert a decimal integer in closed range [0,32767] to Na'vi
  * @param num number to convert to Na'vi;
  * @param {RequestInit | undefined} init fetch options (optional)
@@ -389,7 +304,7 @@ async function dictLen(init) {
     return data;
 }
 /**
- * Returns whether or not the given string is valid Na'vi
+ * Returns reef dialect spelling and IPA given interdialect IPA
  * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
  * @returns {Promise<String[]>}
@@ -401,12 +316,12 @@ async function reefMe(words, init) {
     return data;
 }
 /**
- * Returns whether or not the given string is valid Na'vi
+ * Returns a map of how often every phoneme appears in Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string[][][]>}
  */
 async function phonemeFrequency(init) {
-    const url = endpoints.reef_ipa_url;
+    const url = endpoints.phonemes_url;
     const response = await fetch(url, init);
     const data = (await response.json());
     return data;
@@ -446,13 +361,6 @@ exports.multiIPA = multiIPA;
 exports.nameAlu = nameAlu;
 exports.nameFull = nameFull;
 exports.nameSingle = nameSingle;
-exports.oddballs = oddballs;
-exports.homonyms = homonyms;
-exports.valid = valid;
-exports.dictLen = dictLen;
-exports.reefMe = reefMe;
-exports.phonemeFrequency = phonemeFrequency;
-exports.profanity = profanity;
 exports.naviToNumber = naviToNumber;
 exports.numberToNavi = numberToNavi;
 exports.oddballs = oddballs;
