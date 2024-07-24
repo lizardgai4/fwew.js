@@ -22,6 +22,7 @@ type Word = {
   ET: string
   FR: string
   HU: string
+  KO: string
   NL: string
   PL: string
   PT: string
@@ -66,6 +67,7 @@ type LanguageCode =
   | 'et'
   | 'fr'
   | 'hu'
+  | 'ko'
   | 'nl'
   | 'pl'
   | 'pt'

@@ -18,7 +18,7 @@ import {
   phonemeFrequency,
   reefMe,
   valid
-} from './toybox'
+} from './other'
 import type {
   AdjectiveMode,
   Affixes,
