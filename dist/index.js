@@ -22,7 +22,7 @@ const endpoints = {
     homonyms_url: `${API_BASE}/homonyms`,
     oddballs_url: `${API_BASE}/oddballs`,
     multi_ipa_url: `${API_BASE}/multi-ipa`,
-    dict_len_url: `${API_BASE}/total-words`,
+    dict_len_url: `${API_BASE}/total-words/{lang}`,
     reef_ipa_url: `${API_BASE}/reef/{i}`,
     validity_url: `${API_BASE}/valid/{i}`,
     phonemes_url: `${API_BASE}/phonemedistros`,
@@ -295,10 +295,11 @@ async function valid(words, init) {
 /**
  * Returns a string saying how long the dict is
  * @param {RequestInit | undefined} init fetch options (optional)
+ * @param {LanguageCode} lang language code
  * @returns {Promise<String>}
  */
-async function dictLen(init) {
-    const url = endpoints.dict_len_url;
+async function dictLen(lang, init) {
+    const url = endpoints.dict_len_url.replace('{lang}', lang);
     const response = await fetch(url, init);
     const data = (await response.json());
     return data;
