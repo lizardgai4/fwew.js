@@ -23,7 +23,7 @@ const endpoints = {
     dict_len_url: `${API_BASE}/total-words/{lang}`,
     reef_ipa_url: `${API_BASE}/reef/{i}`,
     validity_url: `${API_BASE}/valid/{i}`,
-    phonemes_url: `${API_BASE}/phonemedistros`,
+    phonemes_url: `${API_BASE}/phonemedistros/{lang}`,
 };
 
 /**
@@ -317,10 +317,11 @@ async function reefMe(words, init) {
 /**
  * Returns a map of how often every phoneme appears in Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
+ * @param {LanguageCode} lang language code
  * @returns {Promise<string[][][]>}
  */
-async function phonemeFrequency(init) {
-    const url = endpoints.phonemes_url;
+async function phonemeFrequency(lang, init) {
+    const url = endpoints.phonemes_url.replace('{lang}', lang);
     const response = await fetch(url, init);
     const data = (await response.json());
     return data;
