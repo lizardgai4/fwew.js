@@ -1,6 +1,6 @@
 {
   "name": "fwew.js",
-  "version": "2.5.3",
+  "version": "2.7.0",
   "author": "Corey Scheideman",
   "license": "GPL-3.0",
   "description": "JavaScript wrapper for the Fwew Na'vi Dictionary API written in TypeScript",
@@ -26,5 +26,5 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {},
-  "packageManager": "pnpm@9.3.0"
+  "packageManager": "pnpm@9.4.0"
 }
