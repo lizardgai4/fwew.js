@@ -40,8 +40,7 @@ async function search(lang, words, init) {
         .replace('{lang}', lang)
         .replace('{words}', words);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Search 1 or more words Na'vi -> Local
@@ -54,8 +53,7 @@ async function fwew(navi, init) {
         return [[]];
     const url = endpoints.fwew_url.replace('{nav}', navi);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Search 1 or more words Local -> Na'vi
@@ -71,8 +69,7 @@ async function fwewReverse(lang, local, init) {
         .replace('{lang}', lang)
         .replace('{local}', local);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Search 1 or more words Na'vi -> Local, return only 1D array
@@ -85,8 +82,7 @@ async function fwew1D(navi, init) {
         return [];
     const url = endpoints.fwew_1d_url.replace('{nav}', navi);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Search 1 or more words Local -> Na'vi, return only 1D array
@@ -95,15 +91,14 @@ async function fwew1D(navi, init) {
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[]>}
  */
-async function fwew1DReverse(lang, local) {
+async function fwew1DReverse(lang, local, init) {
     if (local === '')
         return [];
     const url = endpoints.fwew_1d_reverse_url
         .replace('{lang}', lang)
         .replace('{local}', local);
-    const response = await fetch(url);
-    const data = (await response.json());
-    return data;
+    const response = await fetch(url, init);
+    return (await response.json());
 }
 /**
  * Search 1 or more words Na'vi -> Local, ignoring all affixed words
@@ -117,8 +112,7 @@ async function fwewSimple(navi, init) {
         return [[]];
     const url = endpoints.fwew_simple_url.replace('{nav}', navi);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 
 /**
@@ -132,8 +126,7 @@ async function list(args, init) {
         ? new URL(endpoints.list_filter_url.replace('{args}', args).replace('%', '%25'))
         : new URL(endpoints.list_url);
     const response = await fetch(url.toString(), init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 
 /**
@@ -150,8 +143,7 @@ async function nameSingle(n, s, dialect, init) {
         .replace('{s}', s)
         .replace('{dialect}', dialect);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Generate a Na'vi full name
@@ -173,8 +165,7 @@ async function nameFull(ending, n, s1, s2, s3, dialect, init) {
         .replace('{s3}', s3)
         .replace('{dialect}', dialect);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Generate a Na'vi name with alu
@@ -194,8 +185,7 @@ async function nameAlu(n, s, nm, am, dialect, init) {
         .replace('{am}', am)
         .replace('{dialect}', dialect);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 
 /**
@@ -207,8 +197,7 @@ async function nameAlu(n, s, nm, am, dialect, init) {
 async function numberToNavi(num, init) {
     const url = endpoints.number_to_navi_url.replace('{num}', num.toString());
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Convert a Na'vi number word to decimal and octal
@@ -219,8 +208,7 @@ async function numberToNavi(num, init) {
 async function naviToNumber(word, init) {
     const url = endpoints.navi_to_number_url.replace('{word}', word);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 
 /**
@@ -236,13 +224,11 @@ async function random(n, args, init) {
             .replace('{n}', n.toString())
             .replace('{args}', args);
         const response = await fetch(url, init);
-        const data = (await response.json());
-        return data;
+        return (await response.json());
     }
     const url = endpoints.random_url.replace('{n}', n.toString());
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 
 /**
@@ -253,19 +239,17 @@ async function random(n, args, init) {
 async function multiIPA(init) {
     const url = endpoints.multi_ipa_url;
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
- * Returns all the words which fall outside of normal Na'vi phonotactics
+ * Returns all the words which fall outside normal Na'vi phonotactics
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[][]>}
  */
 async function oddballs(init) {
     const url = endpoints.oddballs_url;
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Returns all the words with more than one dictionary entry
@@ -275,43 +259,39 @@ async function oddballs(init) {
 async function homonyms(init) {
     const url = endpoints.homonyms_url;
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
- * Returns whether or not the given string is valid Na'vi
+ * Returns whether the given string is valid Na'vi
  * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
- * @returns {Promise<String>}
+ * @returns {Promise<string>}
  */
 async function valid(words, init) {
     const url = endpoints.validity_url.replace('{i}', words);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Returns a string saying how long the dict is
  * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<String>}
+ * @returns {Promise<string>}
  */
 async function dictLen(init) {
     const url = endpoints.dict_len_url;
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Returns reef dialect spelling and IPA given interdialect IPA
  * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
- * @returns {Promise<String[]>}
+ * @returns {Promise<string[]>}
  */
 async function reefMe(words, init) {
     const url = endpoints.reef_ipa_url.replace('{i}', words);
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Returns a map of how often every phoneme appears in Na'vi
@@ -321,8 +301,7 @@ async function reefMe(words, init) {
 async function phonemeFrequency(init) {
     const url = endpoints.phonemes_url;
     const response = await fetch(url, init);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 
 /**
@@ -332,8 +311,7 @@ async function phonemeFrequency(init) {
 async function lenition() {
     const url = endpoints.lenition_url;
     const response = await fetch(url);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 /**
  * Get the version of fwew-api, fwew-lib, and the dictionary
@@ -342,8 +320,7 @@ async function lenition() {
 async function version() {
     const url = endpoints.version_url;
     const response = await fetch(url);
-    const data = (await response.json());
-    return data;
+    return (await response.json());
 }
 
 export { dictLen, fwew, fwew1D, fwew1DReverse, fwewReverse, fwewSimple, homonyms, lenition, list, multiIPA, nameAlu, nameFull, nameSingle, naviToNumber, numberToNavi, oddballs, phonemeFrequency, random, reefMe, search, valid, version };

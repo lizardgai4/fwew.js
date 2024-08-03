@@ -14,6 +14,5 @@ export async function list(args?: string, init?: RequestInit): Promise<Word[]> {
       )
     : new URL(endpoints.list_url)
   const response = await fetch(url.toString(), init)
-  const data = (await response.json()) as Word[]
-  return data
+  return (await response.json()) as Word[]
 }

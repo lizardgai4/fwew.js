@@ -20,8 +20,7 @@ export async function nameSingle(
     .replace('{s}', s)
     .replace('{dialect}', dialect)
   const response = await fetch(url, init)
-  const data = (await response.json()) as string
-  return data
+  return (await response.json()) as string
 }
 
 /**
@@ -52,8 +51,7 @@ export async function nameFull(
     .replace('{s3}', s3)
     .replace('{dialect}', dialect)
   const response = await fetch(url, init)
-  const data = (await response.json()) as string
-  return data
+  return (await response.json()) as string
 }
 
 /**
@@ -81,6 +79,5 @@ export async function nameAlu(
     .replace('{am}', am)
     .replace('{dialect}', dialect)
   const response = await fetch(url, init)
-  const data = (await response.json()) as string
-  return data
+  return (await response.json()) as string
 }

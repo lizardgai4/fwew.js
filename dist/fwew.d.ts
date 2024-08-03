@@ -36,7 +36,7 @@ declare function fwew1D(navi: string, init?: RequestInit): Promise<Word[]>;
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<Word[]>}
  */
-declare function fwew1DReverse(lang: LanguageCode, local: string): Promise<Word[]>;
+declare function fwew1DReverse(lang: LanguageCode, local: string, init?: RequestInit): Promise<Word[]>;
 /**
  * Search 1 or more words Na'vi -> Local, ignoring all affixed words
  * Use this only when you know you are searching a listed root word
