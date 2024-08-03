@@ -19,8 +19,8 @@ declare function oddballs(init?: RequestInit): Promise<Word[][]>;
 declare function homonyms(init?: RequestInit): Promise<Word[][]>;
 /**
  * Returns whether the given string is valid Na'vi
- * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
 declare function valid(words: string, init?: RequestInit): Promise<string>;
@@ -32,8 +32,8 @@ declare function valid(words: string, init?: RequestInit): Promise<string>;
 declare function dictLen(init?: RequestInit): Promise<string>;
 /**
  * Returns reef dialect spelling and IPA given interdialect IPA
- * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string[]>}
  */
 declare function reefMe(words: string, init?: RequestInit): Promise<string[]>;

@@ -263,8 +263,8 @@ async function homonyms(init) {
 }
 /**
  * Returns whether the given string is valid Na'vi
- * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
 async function valid(words, init) {
@@ -284,8 +284,8 @@ async function dictLen(init) {
 }
 /**
  * Returns reef dialect spelling and IPA given interdialect IPA
- * @param {RequestInit | undefined} init fetch options (optional)
  * @param {string} words words to search
+ * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string[]>}
  */
 async function reefMe(words, init) {
