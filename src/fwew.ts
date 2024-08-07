@@ -18,8 +18,7 @@ async function search(
     .replace('{lang}', lang)
     .replace('{words}', words)
   const response = await fetch(url, init)
-  const data = (await response.json()) as Word[][]
-  return data
+  return (await response.json()) as Word[][]
 }
 
 /**
@@ -32,8 +31,7 @@ async function fwew(navi: string, init?: RequestInit): Promise<Word[][]> {
   if (navi === '') return [[]]
   const url = endpoints.fwew_url.replace('{nav}', navi)
   const response = await fetch(url, init)
-  const data = (await response.json()) as Word[][]
-  return data
+  return (await response.json()) as Word[][]
 }
 
 /**
@@ -53,8 +51,7 @@ async function fwewReverse(
     .replace('{lang}', lang)
     .replace('{local}', local)
   const response = await fetch(url, init)
-  const data = (await response.json()) as Word[][]
-  return data
+  return (await response.json()) as Word[][]
 }
 
 /**
@@ -67,8 +64,7 @@ async function fwew1D(navi: string, init?: RequestInit): Promise<Word[]> {
   if (navi === '') return []
   const url = endpoints.fwew_1d_url.replace('{nav}', navi)
   const response = await fetch(url, init)
-  const data = (await response.json()) as Word[]
-  return data
+  return (await response.json()) as Word[]
 }
 
 /**
@@ -80,15 +76,15 @@ async function fwew1D(navi: string, init?: RequestInit): Promise<Word[]> {
  */
 async function fwew1DReverse(
   lang: LanguageCode,
-  local: string
+  local: string,
+  init?: RequestInit
 ): Promise<Word[]> {
   if (local === '') return []
   const url = endpoints.fwew_1d_reverse_url
     .replace('{lang}', lang)
     .replace('{local}', local)
-  const response = await fetch(url)
-  const data = (await response.json()) as Word[]
-  return data
+  const response = await fetch(url, init)
+  return (await response.json()) as Word[]
 }
 
 /**
@@ -102,8 +98,7 @@ async function fwewSimple(navi: string, init?: RequestInit): Promise<Word[][]> {
   if (navi === '') return [[]]
   const url = endpoints.fwew_simple_url.replace('{nav}', navi)
   const response = await fetch(url, init)
-  const data = (await response.json()) as Word[][]
-  return data
+  return (await response.json()) as Word[][]
 }
 
 export { fwew, fwew1D, fwew1DReverse, fwewReverse, fwewSimple, search }

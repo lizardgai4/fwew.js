@@ -13,8 +13,7 @@ export async function numberToNavi(
 ): Promise<FwewNumber | FwewError> {
   const url = endpoints.number_to_navi_url.replace('{num}', num.toString())
   const response = await fetch(url, init)
-  const data = (await response.json()) as FwewNumber | FwewError
-  return data
+  return (await response.json()) as FwewNumber | FwewError
 }
 
 /**
@@ -29,6 +28,5 @@ export async function naviToNumber(
 ): Promise<FwewNumber | FwewError> {
   const url = endpoints.navi_to_number_url.replace('{word}', word)
   const response = await fetch(url, init)
-  const data = (await response.json()) as FwewNumber | FwewError
-  return data
+  return (await response.json()) as FwewNumber | FwewError
 }

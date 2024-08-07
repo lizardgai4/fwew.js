@@ -18,11 +18,9 @@ export async function random(
       .replace('{n}', n.toString())
       .replace('{args}', args)
     const response = await fetch(url, init)
-    const data = (await response.json()) as Word[]
-    return data
+    return (await response.json()) as Word[]
   }
   const url = endpoints.random_url.replace('{n}', n.toString())
   const response = await fetch(url, init)
-  const data = (await response.json()) as Word[]
-  return data
+  return (await response.json()) as Word[]
 }

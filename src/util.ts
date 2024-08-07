@@ -8,8 +8,7 @@ import { LenitionTable, Version } from './types'
 export async function lenition(): Promise<LenitionTable> {
   const url = endpoints.lenition_url
   const response = await fetch(url)
-  const data = (await response.json()) as LenitionTable
-  return data
+  return (await response.json()) as LenitionTable
 }
 
 /**
@@ -19,6 +18,5 @@ export async function lenition(): Promise<LenitionTable> {
 export async function version(): Promise<Version> {
   const url = endpoints.version_url
   const response = await fetch(url)
-  const data = (await response.json()) as Version
-  return data
+  return (await response.json()) as Version
 }
