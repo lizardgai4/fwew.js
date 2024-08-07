@@ -274,9 +274,8 @@ async function valid(words, init) {
 }
 /**
  * Returns a string saying how long the dict is
- * @param {LanguageCode} lang language code
  * @param {RequestInit | undefined} init fetch options (optional)
- * @returns {Promise<String>}
+ * @returns {Promise<string>}
  */
 async function dictLen(lang, init) {
     const url = endpoints.dict_len_url.replace('{lang}', lang);
@@ -296,7 +295,6 @@ async function reefMe(words, init) {
 }
 /**
  * Returns a map of how often every phoneme appears in Na'vi
- * @param {LanguageCode} lang language code
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string[][][]>}
  */
