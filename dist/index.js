@@ -321,8 +321,8 @@ async function reefMe(words, init) {
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string[][][]>}
  */
-async function phonemeFrequency(init) {
-    const url = endpoints.phonemes_url;
+async function phonemeFrequency(lang, init) {
+    const url = endpoints.phonemes_url.replace('{lang}', lang);
     const response = await fetch(url, init);
     const data = (await response.json());
     return data;
