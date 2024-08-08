@@ -274,6 +274,7 @@ async function valid(words, init) {
 }
 /**
  * Returns a string saying how long the dict is
+ * @param {string} lang results/ui language
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
@@ -295,6 +296,7 @@ async function reefMe(words, init) {
 }
 /**
  * Returns a map of how often every phoneme appears in Na'vi
+ * @param {string} lang results/ui language
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string[][][]>}
  */

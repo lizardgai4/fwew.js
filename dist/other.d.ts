@@ -26,10 +26,11 @@ declare function homonyms(init?: RequestInit): Promise<Word[][]>;
 declare function valid(words: string, init?: RequestInit): Promise<string>;
 /**
  * Returns a string saying how long the dict is
+ * @param {string} lang results/ui language
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
-declare function dictLen(lang: string, init?: RequestInit): Promise<String>;
+declare function dictLen(lang: string, init?: RequestInit): Promise<string>;
 /**
  * Returns reef dialect spelling and IPA given interdialect IPA
  * @param {string} words words to search
@@ -39,6 +40,7 @@ declare function dictLen(lang: string, init?: RequestInit): Promise<String>;
 declare function reefMe(words: string, init?: RequestInit): Promise<string[]>;
 /**
  * Returns a map of how often every phoneme appears in Na'vi
+ * @param {string} lang results/ui language
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string[][][]>}
  */
