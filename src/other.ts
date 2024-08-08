@@ -48,10 +48,11 @@ async function valid(words: string, init?: RequestInit): Promise<string> {
 
 /**
  * Returns a string saying how long the dict is
+ * @param {string} lang results/ui language
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
-async function dictLen(lang: string, init?: RequestInit): Promise<String> {
+async function dictLen(lang: string, init?: RequestInit): Promise<string> {
   const url = endpoints.dict_len_url.replace('{lang}', lang);
   const response = await fetch(url, init)
   return (await response.json()) as string
@@ -71,6 +72,7 @@ async function reefMe(words: string, init?: RequestInit): Promise<string[]> {
 
 /**
  * Returns a map of how often every phoneme appears in Na'vi
+ * @param {string} lang results/ui language
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string[][][]>}
  */
