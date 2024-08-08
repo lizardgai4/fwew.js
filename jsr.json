@@ -1,6 +1,6 @@
 {
   "name": "@corscheid/fwew",
-  "version": "2.7.4",
+  "version": "2.7.5",
   "exports": "./src/index.ts",
   "publish": {
     "include": ["src/**/*.ts", "LICENSE", "README.md"]
