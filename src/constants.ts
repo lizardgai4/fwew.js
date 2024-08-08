@@ -21,8 +21,8 @@ export const endpoints = {
   homonyms_url: `${API_BASE}/homonyms`,
   oddballs_url: `${API_BASE}/oddballs`,
   multi_ipa_url: `${API_BASE}/multi-ipa`,
-  dict_len_url: `${API_BASE}/total-words`,
+  dict_len_url: `${API_BASE}/total-words/{lang}`,
   reef_ipa_url: `${API_BASE}/reef/{i}`,
   validity_url: `${API_BASE}/valid/{i}`,
-  phonemes_url: `${API_BASE}/phonemedistros`,
+  phonemes_url: `${API_BASE}/phonemedistros/{lang}`,
 }

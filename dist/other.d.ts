@@ -29,7 +29,7 @@ declare function valid(words: string, init?: RequestInit): Promise<string>;
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
-declare function dictLen(init?: RequestInit): Promise<string>;
+declare function dictLen(lang: string, init?: RequestInit): Promise<String>;
 /**
  * Returns reef dialect spelling and IPA given interdialect IPA
  * @param {string} words words to search
@@ -42,5 +42,5 @@ declare function reefMe(words: string, init?: RequestInit): Promise<string[]>;
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string[][][]>}
  */
-declare function phonemeFrequency(init?: RequestInit): Promise<string[][][]>;
+declare function phonemeFrequency(lang: string, init?: RequestInit): Promise<string[][][]>;
 export { dictLen, homonyms, multiIPA, oddballs, phonemeFrequency, reefMe, valid };

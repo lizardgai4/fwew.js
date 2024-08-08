@@ -51,8 +51,8 @@ async function valid(words: string, init?: RequestInit): Promise<string> {
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
-async function dictLen(init?: RequestInit): Promise<string> {
-  const url = endpoints.dict_len_url
+async function dictLen(lang: string, init?: RequestInit): Promise<String> {
+  const url = endpoints.dict_len_url.replace('{lang}', lang);
   const response = await fetch(url, init)
   return (await response.json()) as string
 }
@@ -75,8 +75,8 @@ async function reefMe(words: string, init?: RequestInit): Promise<string[]> {
  * @returns {Promise<string[][][]>}
  */
 
-async function phonemeFrequency(init?: RequestInit): Promise<string[][][]> {
-  const url = endpoints.phonemes_url
+async function phonemeFrequency(lang: string, init?: RequestInit): Promise<string[][][]> {
+  const url = endpoints.phonemes_url.replace('{lang}', lang);
   const response = await fetch(url, init)
   return (await response.json()) as Promise<string[][][]>
 }

@@ -22,10 +22,10 @@ const endpoints = {
     homonyms_url: `${API_BASE}/homonyms`,
     oddballs_url: `${API_BASE}/oddballs`,
     multi_ipa_url: `${API_BASE}/multi-ipa`,
-    dict_len_url: `${API_BASE}/total-words`,
+    dict_len_url: `${API_BASE}/total-words/{lang}`,
     reef_ipa_url: `${API_BASE}/reef/{i}`,
     validity_url: `${API_BASE}/valid/{i}`,
-    phonemes_url: `${API_BASE}/phonemedistros`,
+    phonemes_url: `${API_BASE}/phonemedistros/{lang}`,
 };
 
 /**
@@ -279,8 +279,8 @@ async function valid(words, init) {
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string>}
  */
-async function dictLen(init) {
-    const url = endpoints.dict_len_url;
+async function dictLen(lang, init) {
+    const url = endpoints.dict_len_url.replace('{lang}', lang);
     const response = await fetch(url, init);
     return (await response.json());
 }
@@ -300,8 +300,8 @@ async function reefMe(words, init) {
  * @param {RequestInit | undefined} init fetch options (optional)
  * @returns {Promise<string[][][]>}
  */
-async function phonemeFrequency(init) {
-    const url = endpoints.phonemes_url;
+async function phonemeFrequency(lang, init) {
+    const url = endpoints.phonemes_url.replace('{lang}', lang);
     const response = await fetch(url, init);
     return (await response.json());
 }
